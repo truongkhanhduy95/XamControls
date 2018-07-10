@@ -75,12 +75,12 @@ namespace XamControls.Droid.Controls
         private float barInnerOffset;
 
         private RectF rectBar = new RectF();
-        private RectF rectTopCircle;
-        private RectF rectBottomCircle;
-        private RectF rectTouch;
-        private RectF rectLabel;
-        private Rect rectText;
-        private Path pathMetaball;
+        private RectF rectTopCircle= new RectF();
+        private RectF rectBottomCircle= new RectF();
+        private RectF rectTouch= new RectF();
+        private RectF rectLabel= new RectF();
+        private Rect rectText= new Rect();
+        private Path pathMetaball = new Path();
 
         private Paint paintBar;
         private Paint paintLabel;
@@ -135,8 +135,8 @@ namespace XamControls.Droid.Controls
         }
 
         private string bubbleText;
-        private string startText = TEXT_START;
-        private string endText = TEXT_END;
+        public string StartText = TEXT_START;
+        public string EndText = TEXT_END;
 
         public Action<float> OnPositionChanged;
         public Action OnBeginTracking;
@@ -217,7 +217,7 @@ namespace XamControls.Droid.Controls
 
         protected override IParcelable OnSaveInstanceState()
         {
-            return new State(base.OnSaveInstanceState(), position, startText, endText, TextSize,
+            return new State(base.OnSaveInstanceState(), position, StartText, EndText, TextSize,
                              ColorBubble, ColorBar, colorBarText, colorBubbleText, duration);
         }
 
@@ -227,8 +227,8 @@ namespace XamControls.Droid.Controls
             if (state is State)
             {
                 position = ((State)state).Position;
-                startText = ((State)state).StartText;
-                endText = ((State)state).EndText;
+                StartText = ((State)state).StartText;
+                EndText = ((State)state).EndText;
                 TextSize = ((State)state).TextSize;
                 //ColorBubble = ((State)state).ColorLabel;
                 //ColorBar = ((State)state).ColorBar;
@@ -268,10 +268,10 @@ namespace XamControls.Droid.Controls
             // Draw slider bar and text
             canvas.DrawRoundRect(rectBar, barCornerRadius, barCornerRadius, paintBar);
 
-            if(!string.IsNullOrEmpty(startText))
-                DrawText(canvas, paintText, startText, Paint.Align.Left, colorBarText, textOffset, rectBar, rectText);
-            if (!string.IsNullOrEmpty(endText))
-                DrawText(canvas, paintText, endText, Paint.Align.Right, colorBarText, textOffset, rectBar, rectText);
+            if(!string.IsNullOrEmpty(StartText))
+                DrawText(canvas, paintText, StartText, Paint.Align.Left, colorBarText, textOffset, rectBar, rectText);
+            if (!string.IsNullOrEmpty(EndText))
+                DrawText(canvas, paintText, EndText, Paint.Align.Right, colorBarText, textOffset, rectBar, rectText);
 
             // Draw metaball
             var x = barInnerOffset + touchRectDiameter / 2 + maxMovement * position;
@@ -402,7 +402,7 @@ namespace XamControls.Droid.Controls
             var fp1a = new List<float>() { p1a[0], p1a[1] - yOffset }; //.let { l->listOf(l[0], l[1] - yOffset) };
             var fp1b = new List<float>() { p1b[0], p1b[1] - yOffset }; //p1b.let { l->listOf(l[0], l[1] - yOffset) };
 
-            using(path) {
+            //using(path) {
                 path.Reset();
                 path.MoveTo(fp1a[0], fp1a[1] + cornerRadius);
                 path.LineTo(fp1a[0], fp1a[1]);
@@ -412,12 +412,10 @@ namespace XamControls.Droid.Controls
                 path.CubicTo(p2b[0] + sp3[0], p2b[1] + sp3[1], fp1b[0] + sp4[0], fp1b[1] + sp4[1], fp1b[0], fp1b[1]);
                 path.LineTo(fp1b[0], fp1b[1] + cornerRadius);
                 path.Close();
-            }
+//            }
 
-            using(canvas) {
-                canvas.DrawPath(path, paint);
-                canvas.DrawOval(circle2, paint);
-            }
+            canvas.DrawPath(path, paint);
+            canvas.DrawOval(circle2, paint);
         }
 
         private void DrawText(Canvas canvas, Paint paint,

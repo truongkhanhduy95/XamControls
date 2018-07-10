@@ -290,7 +290,7 @@ namespace XamControls.Droid.Controls
         {
             foreach (var rect in rects)
             {
-                rect.OffsetTo(position - rect.Width() / 2f, rect.Top);
+                rect.OffsetTo(pos - rect.Width() / 2f, rect.Top);
             }
         }
 
@@ -461,8 +461,13 @@ namespace XamControls.Droid.Controls
                         return false;
                 case MotionEventActions.Move:
                     var newPos = Math.Max(0f, Math.Min(1f, position + (e.GetX() - touchX) / maxMovement));
+
+                    System.Diagnostics.Debug.WriteLine("TouchX: " + touchX + "/E.X: " + e.GetX());
                     touchX = e.GetX();
-                    position = (float)newPos;
+
+                    System.Diagnostics.Debug.WriteLine("Old: " + position + "/New: " + newPos);
+                    Position = (float)newPos;
+
                     return true;
 
                 case MotionEventActions.Up:

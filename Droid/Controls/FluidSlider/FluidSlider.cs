@@ -44,15 +44,15 @@ namespace XamControls.Droid.Controls
 
         const double TEXT_SIZE = 12;
         const double TEXT_OFFSET = 8;
-        const string TEXT_START = "0";
-        const string TEXT_END = "100";
+        const int DEFAULT_START = 0;
+        const int DEFAULT_END = 100;
 
         const string COLOR_BAR = "#6168E7";
         Color COLOR_LABEL = Color.White;
         Color COLOR_LABEL_TEXT = Color.Black;
         Color COLOR_BAR_TEXT = Color.White;
 
-        const double INITIAL_POSITION = 0.5f;
+        //const double INITIAL_POSITION = 0.5f;
         #endregion
 
         #region Fields
@@ -92,6 +92,8 @@ namespace XamControls.Droid.Controls
         private Color colorBubbleText;
         private Color colorBarText;
 
+        private float startTextLimit, endTextLimit;
+
         protected Context _context;
         #endregion
 
@@ -108,7 +110,7 @@ namespace XamControls.Droid.Controls
             set { duration = Math.Abs(value); }
         }
 
-        private Size size = Size.SMALL;
+        private Size size = Size.MEDIUM;
         public Size Size
         {
             get { return size; }
@@ -120,7 +122,7 @@ namespace XamControls.Droid.Controls
             get { return paintBar.Color; }
             set
             {
-                paintBar.Color = (value); //TODO: Handle parse color to int
+                paintBar.Color = (value);
             }
         }
 
@@ -129,7 +131,7 @@ namespace XamControls.Droid.Controls
             get { return paintLabel.Color; }
             set
             {
-                paintLabel.Color = (value); //TODO: Handle parse color to int
+                paintLabel.Color = (value);
             }
         }
 
@@ -152,19 +154,29 @@ namespace XamControls.Droid.Controls
             }
         }
 
-        public string StartText = TEXT_START;
-        public string EndText = TEXT_END;
+        public int From = DEFAULT_START;
+        public int To = DEFAULT_END;
 
-        private float position = (float)INITIAL_POSITION;
-        public float Position
+        private float position;
+        public float SelectedValue
         {
-            get { return position; }
+            get { return GetCurentValue(); }
             set 
             {
-                var field = Math.Max(0, Math.Min(1, value));
+                var field = Math.Max(From, Math.Min(To, value));
                 Invalidate();
                 position = value;
                 OnPositionChanged?.Invoke(field);
+            }
+        }
+
+        private bool hideWhenOverlap = false;
+        public bool HideWhenOverlap 
+        {
+            get { return hideWhenOverlap; }
+            set 
+            {
+                hideWhenOverlap = value;   
             }
         }
         #endregion
@@ -234,7 +246,7 @@ namespace XamControls.Droid.Controls
 
         protected override IParcelable OnSaveInstanceState()
         {
-            return new State(base.OnSaveInstanceState(), position, StartText, EndText, TextSize,
+            return new State(base.OnSaveInstanceState(), position, From, To, TextSize,
                              ColorBubble, ColorBar, colorBarText, colorBubbleText, duration);
         }
 
@@ -244,8 +256,8 @@ namespace XamControls.Droid.Controls
             if (state is State)
             {
                 position = ((State)state).Position;
-                StartText = ((State)state).StartText;
-                EndText = ((State)state).EndText;
+                From = ((State)state).StartText;
+                To = ((State)state).EndText;
                 TextSize = ((State)state).TextSize;
                 //ColorBubble = ((State)state).ColorLabel;
                 //ColorBar = ((State)state).ColorBar;
@@ -285,10 +297,11 @@ namespace XamControls.Droid.Controls
             // Draw slider bar and text
             canvas.DrawRoundRect(rectBar, barCornerRadius, barCornerRadius, paintBar);
 
-            if(!string.IsNullOrEmpty(StartText))
-                DrawText(canvas, paintText, StartText, Paint.Align.Left, colorBarText, textOffset, rectBar, rectText);
-            if (!string.IsNullOrEmpty(EndText))
-                DrawText(canvas, paintText, EndText, Paint.Align.Right, colorBarText, textOffset, rectBar, rectText);
+            //TODO: Handle hide text when metaball overlap text
+            if(!string.IsNullOrEmpty(From.ToString()))
+                DrawText(canvas, paintText, From.ToString(), Paint.Align.Left, colorBarText, textOffset, rectBar, rectText);
+            if (!string.IsNullOrEmpty(To.ToString()))
+                DrawText(canvas, paintText, To.ToString(), Paint.Align.Right, colorBarText, textOffset, rectBar, rectText);
 
             // Draw metaball
             var x = barInnerOffset + touchRectDiameter / 2 + maxMovement * position;
@@ -299,8 +312,13 @@ namespace XamControls.Droid.Controls
             // Draw label and text
             canvas.DrawOval(rectLabel, paintLabel);
 
-            var text = string.IsNullOrEmpty(bubbleText) ? ((int)(position * 100)).ToString() : bubbleText;
+            var text = string.IsNullOrEmpty(bubbleText) ? GetCurentValue().ToString() : bubbleText;
             DrawText(canvas, paintText, text, Paint.Align.Center, colorBubbleText, 0f, rectLabel, rectText);
+        }
+
+        private float GetCurentValue()
+        {
+            return (float)Math.Round(position * (Math.Abs(To - From)));
         }
 
         private void OffsetRectToPosition(float pos, RectF[] rects)
@@ -435,24 +453,36 @@ namespace XamControls.Droid.Controls
             canvas.DrawOval(circle2, paint);
         }
 
-        private void DrawText(Canvas canvas, Paint paint,
+
+        //UPDATE: Return text limit
+        private float DrawText(Canvas canvas, Paint paint,
                               string text, Paint.Align align, Color color, float offset,
                               RectF holderRect, Rect textRect)
         {
             paint.Color = color;
             paint.TextAlign = align;
             paint.GetTextBounds(text, 0, text.Length, textRect);
+            var textWidth = paint.MeasureText(text, 0, text.Length);
+            float textLimitX = -1;
 
             float x = 0.0f;
-            if (align == Paint.Align.Left)
+            if (align == Paint.Align.Left) //Draw startText
+            {
                 x = offset;
+                textLimitX = x + textWidth;
+            }
             else if (align == Paint.Align.Center)
                 x = holderRect.CenterX();
-            else if (align == Paint.Align.Right)
+            else if (align == Paint.Align.Right) //Draw endText
+            {
                 x = holderRect.Right - offset;
+                textLimitX = x - textWidth;
+            }
             
             var y = holderRect.CenterY() + textRect.Height() / 2f - textRect.Bottom;
             canvas.DrawText(text.ToCharArray(), 0, text.Length, x, y, paint);
+
+            return textLimitX;
         }
 
         public override bool OnTouchEvent(MotionEvent e)
@@ -483,7 +513,7 @@ namespace XamControls.Droid.Controls
                     touchX = e.GetX();
 
                     System.Diagnostics.Debug.WriteLine("Old: " + position + "/New: " + newPos);
-                    Position = (float)newPos;
+                    SelectedValue = (float)newPos;
 
                     return true;
 
@@ -559,8 +589,8 @@ namespace XamControls.Droid.Controls
     class State : View.BaseSavedState
     {
         public float Position;
-        public string StartText;
-        public string EndText;
+        public int StartText;
+        public int EndText;
         public float TextSize;
         public int ColorLabel;
         public int ColorBar;
@@ -570,8 +600,8 @@ namespace XamControls.Droid.Controls
 
         public State(IParcelable superState,
                      float position,
-                    string startText,
-                    string endText,
+                    int startText,
+                    int endText,
                     float textSize,
                     int colorLabel,
                     int colorBar,
@@ -595,8 +625,8 @@ namespace XamControls.Droid.Controls
         public override void WriteToParcel(Parcel dest, [GeneratedEnum] ParcelableWriteFlags flags)
         {
             dest.WriteFloat(Position);
-            dest.WriteString(StartText);
-            dest.WriteString(EndText);
+            dest.WriteInt(StartText);
+            dest.WriteInt(EndText);
             dest.WriteFloat(TextSize);
             dest.WriteInt(ColorLabel);
             dest.WriteInt(ColorBar);

@@ -14,9 +14,9 @@ namespace XamControls.Droid.Controls
     public enum Size
     {
         //Value caculated in dp
-
         NORMAL = 56,
-        SMALL = 40,
+        MEDIUM = 40,
+        SMALL = 32,
     }
 
     public class FluidSlider : View
@@ -118,10 +118,10 @@ namespace XamControls.Droid.Controls
 
         public Color ColorBubble
         {
-            get { return paintBar.Color; }
+            get { return paintLabel.Color; }
             set
             {
-                paintBar.Color = (value); //TODO: Handle parse color to int
+                paintLabel.Color = (value); //TODO: Handle parse color to int
             }
         }
 
@@ -135,6 +135,15 @@ namespace XamControls.Droid.Controls
         }
 
         private string bubbleText;
+        public string BubbleText
+        {
+            get { return bubbleText; }
+            set
+            {
+                bubbleText = value;
+            }
+        }
+
         public string StartText = TEXT_START;
         public string EndText = TEXT_END;
 
@@ -182,6 +191,7 @@ namespace XamControls.Droid.Controls
             paintBar.SetStyle(Paint.Style.Fill);
 
             paintLabel = new Paint(PaintFlags.AntiAlias);
+            paintLabel.Color = Color.White;
             paintLabel.SetStyle(Paint.Style.Fill);
 
             paintText = new Paint(PaintFlags.AntiAlias);
@@ -208,6 +218,9 @@ namespace XamControls.Droid.Controls
             barCornerRadius = (float)(BAR_CORNER_RADIUS * density);
             barInnerOffset = (float)(BAR_INNER_HORIZONTAL_OFFSET * density);
             textOffset = (float)(TEXT_OFFSET * density);
+
+            colorBubbleText = COLOR_LABEL_TEXT;
+            colorBarText = COLOR_BAR_TEXT;
 
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {

@@ -55,7 +55,7 @@ namespace XamControls.Droid.Controls
         const double INITIAL_POSITION = 0.5f;
         #endregion
 
-        #region Props
+        #region Fields
         private float barHeight;
 
         private int desiredWidth;
@@ -88,10 +88,18 @@ namespace XamControls.Droid.Controls
 
         private double maxMovement;
         private double touchX;
+
+        private Color colorBubbleText;
+        private Color colorBarText;
+
+        protected Context _context;
         #endregion
 
-        Color colorBubbleText;
-        Color colorBarText;
+        #region Props
+
+        public Action<float> OnPositionChanged;
+        public Action OnBeginTracking;
+        public Action OnEndTracking;
 
         private long duration;
         public long Duration
@@ -147,10 +155,6 @@ namespace XamControls.Droid.Controls
         public string StartText = TEXT_START;
         public string EndText = TEXT_END;
 
-        public Action<float> OnPositionChanged;
-        public Action OnBeginTracking;
-        public Action OnEndTracking;
-
         private float position = (float)INITIAL_POSITION;
         public float Position
         {
@@ -163,8 +167,8 @@ namespace XamControls.Droid.Controls
                 OnPositionChanged?.Invoke(field);
             }
         }
+        #endregion
 
-        protected Context _context;
 
         public FluidSlider(Context context) : base(context)
         {

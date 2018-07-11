@@ -139,6 +139,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="Controls\FluidSlider\Filters.cs" />
     <Compile Include="Controls\FluidSlider\ValueView.cs" />
+    <Compile Include="Controls\FluidSlider\Slider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />

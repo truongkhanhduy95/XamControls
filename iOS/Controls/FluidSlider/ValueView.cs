@@ -1,6 +1,7 @@
 ﻿using System;
 using CoreAnimation;
 using CoreGraphics;
+using Foundation;
 using UIKit;
 
 namespace XamControls.iOS.Controls
@@ -14,6 +15,8 @@ namespace XamControls.iOS.Controls
 
         public UILabel TextLabel;
         public UIView ShapeView;
+
+        public Action AnimationFrame;
 
         public UIColor OuterFillColor 
         {
@@ -32,6 +35,24 @@ namespace XamControls.iOS.Controls
             {
                 innerShapeLayer.FillColor = value.CGColor;
                 innerShapeLayer.RemoveAllAnimations();
+            }
+        }
+
+        public NSAttributedString AttributeText
+        {
+            get { return TextLabel.AttributedText; }
+            set
+            {
+                if( value != TextLabel.AttributedText)
+                {
+                    var str = value.MutableCopy() as NSMutableAttributedString;
+                    //var paragraph = str.GetAttribute(str.)
+                    throw new NotImplementedException(); //TODO
+                }
+                else
+                {
+                    TextLabel.AttributedText = null;
+                }
             }
         }
 
@@ -76,11 +97,13 @@ namespace XamControls.iOS.Controls
         public void AnimateTrackingBegin()
         {
             //TODO: Implement animation   
+            AnimationFrame?.Invoke();
         }
 
         public void AnimateTrackingEnd()
         {
             //TODO: Implement animation
+            AnimationFrame?.Invoke();
         }
     }
 }

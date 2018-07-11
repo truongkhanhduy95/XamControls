@@ -32,7 +32,7 @@ namespace XamControls.Droid
             slider = FindViewById<Controls.FluidSlider>(Resource.Id.fluidSlider);
 
             slider.StartText = "0";
-            slider.EndText = "500";
+            slider.EndText = "100";
         }
 
         protected override void OnStart()

@@ -16,7 +16,7 @@ namespace XamControls.iOS.Controls
         public override CIImage OutputImage
         {
             //var inputImage = inputImage != null ? inputImage : null;
-            return inputImage;
+            return null;
 
         }
     }

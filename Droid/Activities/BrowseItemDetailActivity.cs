@@ -33,6 +33,14 @@ namespace XamControls.Droid
 
             slider.From = 0;
             slider.To = 500;
+            slider.SelectedValue = 250;
+            slider.ColorBar = this.BaseContext.Resources.GetColor(Resource.Color.primary);
+            //slider.ColorBubble = this.BaseContext.Resources.GetColor(Resource.Color.primary);
+
+            slider.OnPositionChanged += (float value) => 
+            {
+                System.Diagnostics.Debug.WriteLine("Selected: " + value);
+            };
         }
 
         protected override void OnStart()

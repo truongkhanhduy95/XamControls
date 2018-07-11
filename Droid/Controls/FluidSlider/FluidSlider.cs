@@ -164,8 +164,8 @@ namespace XamControls.Droid.Controls
             set 
             {
                 var field = Math.Max(From, Math.Min(To, value));
+                SetCurrentValue(field);
                 Invalidate();
-                position = value;
                 OnPositionChanged?.Invoke(field);
             }
         }
@@ -321,6 +321,19 @@ namespace XamControls.Droid.Controls
             return (float)Math.Round(position * (Math.Abs(To - From)));
         }
 
+        private void SetCurrentValue(float value)
+        {
+            position = (float)(value / Math.Abs(To - From));
+        }
+
+        private void UpdatePosition(float value)
+        {
+            var field = Math.Max(From, Math.Min(To, value));
+            Invalidate();
+            position = value;
+            OnPositionChanged?.Invoke(GetCurentValue());
+        }
+
         private void OffsetRectToPosition(float pos, RectF[] rects)
         {
             foreach (var rect in rects)
@@ -332,6 +345,7 @@ namespace XamControls.Droid.Controls
         public override bool PerformClick()
         {
             base.PerformClick();
+            OnPositionChanged?.Invoke(GetCurentValue());
             return true;
         }
 
@@ -513,7 +527,7 @@ namespace XamControls.Droid.Controls
                     touchX = e.GetX();
 
                     System.Diagnostics.Debug.WriteLine("Old: " + position + "/New: " + newPos);
-                    SelectedValue = (float)newPos;
+                    UpdatePosition((float)newPos);
 
                     return true;
 
@@ -545,7 +559,7 @@ namespace XamControls.Droid.Controls
                 Invalidate();
             };
             animation.SetDuration(duration);
-            animation.SetInterpolator(new OvershootInterpolator());
+            animation.SetInterpolator(new OvershootInterpolator(tension: 2));
             animation.Start();
         }
 

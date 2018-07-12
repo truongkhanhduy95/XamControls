@@ -101,7 +101,7 @@ namespace XamControls.iOS.Controls
             {
                 fraction = value;
                 UpdateValueViewText();
-                SetNeedsLayout();
+                LayoutValueView();
             }
         }
 
@@ -169,7 +169,7 @@ namespace XamControls.iOS.Controls
             contentView.UserInteractionEnabled = false;
             AddSubview(contentView);
 
-
+            contentView.AddSubview(backgroundImageView);
             contentView.AddSubview(minimumLabel);
             contentView.AddSubview(maximumLabel);
             contentView.AddSubview(valueView);
@@ -289,9 +289,9 @@ namespace XamControls.iOS.Controls
             var x = uitouch.LocationInView(this).X;
             isSliderTracking = true;
 
-            fraction = FractionForPositionX(x);
+            Fraction = FractionForPositionX(x);
             valueView.AnimateTrackingBegin();
-
+            System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
             //Send action changed; SendAction(this.);
             DidBeginTracking?.Invoke(this);
 
@@ -304,8 +304,8 @@ namespace XamControls.iOS.Controls
             var x = uitouch.LocationInView(this).X;
             isSliderTracking = true;
 
-            fraction = FractionForPositionX(x);
-
+            Fraction = FractionForPositionX(x);
+            System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
             filterView.Center = new CGPoint(valueView.Center.X, filterView.Center.X);
             return result;
         }
@@ -315,6 +315,7 @@ namespace XamControls.iOS.Controls
             base.EndTracking(uitouch, uievent);
             isSliderTracking = false;
             valueView.AnimateTrackingEnd();
+            System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
             UpdateValueViewText();
             DidEndTracking?.Invoke(this);
         }
@@ -323,6 +324,7 @@ namespace XamControls.iOS.Controls
         {
             base.CancelTracking(uievent);
             isSliderTracking = false;
+            System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
             valueView.AnimateTrackingEnd();
             UpdateValueViewText();
             DidEndTracking?.Invoke(this);

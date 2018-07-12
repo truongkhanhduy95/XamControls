@@ -49,11 +49,15 @@ namespace XamControls.iOS.Controls
             get { return TextLabel.AttributedText; }
             set
             {
-                if( value != TextLabel.AttributedText)
+                if( value != null)
                 {
                     var str = value.MutableCopy() as NSMutableAttributedString;
-                    //var paragraph = str.GetAttribute(str.)
-                    //throw new NotImplementedException(); //TODO
+                    NSRange outRange;
+                    var paragraph = str.GetAttribute(UIStringAttributeKey.ParagraphStyle,0, out outRange) as NSParagraphStyle ??
+                                       new NSParagraphStyle().MutableCopy() as NSMutableParagraphStyle;
+                    paragraph.Alignment = UITextAlignment.Center;
+                    str.AddAttribute(UIStringAttributeKey.ParagraphStyle, paragraph, new NSRange(0, str.Length));
+                    TextLabel.AttributedText = str;
                 }
                 else
                 {

@@ -177,8 +177,8 @@ namespace XamControls.iOS.Controls
             valueView.UserInteractionEnabled = false;
             valueView.AnimationFrame = RedrawFilterView;
 
-            SetMinimumLabelAttributedText(new NSAttributedString("0"));
-            SetMaximumLabelAttributedText(new NSAttributedString("1"));
+            SetMinimumLabelAttributedText(new NSAttributedString("0", foregroundColor: UIColor.White));
+            SetMaximumLabelAttributedText(new NSAttributedString("1", foregroundColor: UIColor.White));
 
             UpdateValueViewColor();
             UpdateValueViewText();

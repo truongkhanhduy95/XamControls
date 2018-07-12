@@ -146,7 +146,7 @@ namespace XamControls.iOS.Controls
 
             //layoutBackgroundImage()
 
-            //LayoutImageViews();
+            LayoutImageViews();
             LayoutLabelsText();
             LayoutValueView();
         }
@@ -171,7 +171,7 @@ namespace XamControls.iOS.Controls
             var imageInset = ValueView.kLayoutMarginInset * 2;
             var imageSize = new CGSize(Bounds.Height - imageInset * 2, Bounds.Height - imageInset * 2);
 
-            throw new NotImplementedException();
+            throw new NotImplementedException("Not support yet!!!!");
         }
 
 

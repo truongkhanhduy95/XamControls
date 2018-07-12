@@ -23,18 +23,24 @@ namespace XamControls.iOS.Controls
             //get { return outerShapeLayer.FillColor; }
             set
             {
-                outerShapeLayer.FillColor = UIColor.Blue.CGColor;
-                outerShapeLayer.RemoveAllAnimations();
+                if (value != null)
+                {
+                    outerShapeLayer.FillColor = value.CGColor;
+                    outerShapeLayer.RemoveAllAnimations();    
+                }
             }
         }
 
         public UIColor InnerFillColor
         {
-            //get { return outerShapeLayer.FillColor; }
+            //get { return innerShapeLayer.FillColor; }
             set
             {
-                innerShapeLayer.FillColor = UIColor.Blue.CGColor;
-                innerShapeLayer.RemoveAllAnimations();
+                if(value != null)
+                {
+                    innerShapeLayer.FillColor = value.CGColor;
+                    innerShapeLayer.RemoveAllAnimations();    
+                }
             }
         }
 

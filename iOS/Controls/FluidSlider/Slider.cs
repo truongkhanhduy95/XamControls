@@ -34,6 +34,8 @@ namespace XamControls.iOS.Controls
         private UILabel minimumLabel = new UILabel();
         private UILabel maximumLabel = new UILabel();
 
+        private UIImageView backgroundImageView = new UIImageView();
+
         private UIImageView filterView = new UIImageView();
         private MetaballFilter filter = new MetaballFilter();
         private UIImage filterViewMask = new UIImage();
@@ -43,6 +45,17 @@ namespace XamControls.iOS.Controls
 
         public Action<Slider> DidBeginTracking;
         public Action<Slider> DidEndTracking;
+
+        private float contentViewCornerRadius = 8f;
+        public float ContentViewCornerRadius
+        {
+            get { return contentViewCornerRadius; }
+            set 
+            {
+                contentViewCornerRadius = value;
+                LayoutBackgroundImage();
+            }
+        }
 
         private UIColor contentViewColor;
         public UIColor ContentViewColor
@@ -103,6 +116,39 @@ namespace XamControls.iOS.Controls
             }
         }
 
+        private CGSize shadowOffset = CGSize.Empty;
+        public CGSize ShadowOffset 
+        {
+            get { return shadowOffset; }
+            set 
+            {
+                shadowOffset = value;
+                SetNeedsLayout();
+            }
+        }
+
+        private float shadowBlur = 0;
+        public float ShadowBlur
+        {
+            get { return shadowBlur; }
+            set
+            {
+                shadowBlur = value;
+                SetNeedsLayout();
+            }
+        }
+
+        private UIColor shadowColor;
+        public UIColor ShadowColor
+        {
+            get { return shadowColor; }
+            set
+            {
+                shadowColor = value;
+                SetNeedsLayout();
+            }
+        }
+
         
         public Slider()
         {
@@ -122,6 +168,7 @@ namespace XamControls.iOS.Controls
             contentView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
             contentView.UserInteractionEnabled = false;
             AddSubview(contentView);
+
 
             contentView.AddSubview(minimumLabel);
             contentView.AddSubview(maximumLabel);
@@ -149,11 +196,33 @@ namespace XamControls.iOS.Controls
                 filterView.MaskView.Frame = filterView.Bounds;
             }
 
-            //layoutBackgroundImage()
+            LayoutBackgroundImage();
 
             //LayoutImageViews();
             LayoutLabelsText();
             LayoutValueView();
+        }
+
+        private void LayoutBackgroundImage()
+        {
+            var inset = new UIEdgeInsets((System.nfloat)Math.Min(0, shadowOffset.Height - shadowBlur),
+                                        (System.nfloat)Math.Min(0, shadowOffset.Width - shadowBlur),
+                                        (System.nfloat)(Math.Max(0, shadowOffset.Height + shadowBlur) * -1),
+                                         (System.nfloat)(Math.Max(0, shadowOffset.Width + shadowBlur) * -1));
+            backgroundImageView.Frame = inset.InsetRect(Bounds);
+            backgroundImageView.Image = new UIGraphicsImageRenderer(this.Bounds.Size).CreateImage((ctx) =>
+            {
+                if (shadowColor != null)
+                    ctx.CGContext.SetShadow(shadowOffset, shadowBlur, shadowColor.CGColor);
+                
+                contentViewColor.SetFill();
+                var insetX = new UIEdgeInsets(inset.Top * -1,
+                                               inset.Left * -1,
+                                              inset.Bottom * -1,
+                                               inset.Right * -1);
+                var path = UIBezierPath.FromRoundedRect(insetX.InsetRect(backgroundImageView.Bounds), contentViewCornerRadius);
+                path.Fill();
+            });
         }
 
         private void LayoutLabelsText()

@@ -102,39 +102,28 @@ namespace XamControls.iOS.Controls
 
         public void AnimateTrackingBegin()
         {
-            UIView.AnimateAsync(0.22, () =>
-             {
-                var topY = -ShapeView.Bounds.Height - 4;
+            var topY = -ShapeView.Bounds.Height + 1;
 
-                 var animation = CASpringAnimation.FromKeyPath(@"translation.y");
-                 animation.SetTo(NSNumber.FromFloat((float)(topY + ShapeView.Bounds.GetMidY())));
-                 animation.RemovedOnCompletion = true;
-                 animation.Duration = 0.22;
-                 animation.AnimationStarted += (sender, e) =>
-                 {
-                     AnimationFrame?.Invoke();
-                     System.Diagnostics.Debug.WriteLine("Runnn");
-                 };
+            var transform = CATransform3D.Identity;
+            transform = transform.Translate(0,topY, 0);
 
-                 ShapeView.Layer.AddAnimation(animation, "bounce");
-             });
+            UIView.AnimateNotify(0.22, 0.0, springWithDampingRatio: 0.33f, initialSpringVelocity: 0.0f, options: UIViewAnimationOptions.CurveEaseIn,
+            animations: () =>
+            {
+                ShapeView.Layer.Transform = transform;
+                AnimationFrame?.Invoke();
+            }, completion: null);
+
         }
 
         public void AnimateTrackingEnd()
         {
-            UIView.AnimateAsync(0.22, () =>
-            {
-                var animation = CABasicAnimation.FromKeyPath(@"translation.y");
-                animation.SetTo(NSNumber.FromFloat((float)(ShapeView.Bounds.GetMidY())));
-                animation.RemovedOnCompletion = true;
-                animation.Duration = 0.22;
-                animation.AnimationStarted += (sender, e) =>
-                {
-                    AnimationFrame?.Invoke();
-                };
-
-                ShapeView.Layer.AddAnimation(animation, "bounce");;
-            });
+            var transform = CATransform3D.Identity;
+            UIView.Animate(0.22, () =>
+             {
+                ShapeView.Layer.Transform = transform;
+                 AnimationFrame?.Invoke();
+             });
         }
     }
 }

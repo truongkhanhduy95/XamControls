@@ -265,7 +265,6 @@ namespace XamControls.iOS.Controls
             valueView.Frame = ValueViewFrame(clampedX);
         }
 
-
         private CGRect ValueViewFrame(nfloat centerX)
         {
             return new CGRect(centerX - Bounds.Height /2, Bounds.GetMinY(), Bounds.Height, Bounds.Height);
@@ -324,7 +323,7 @@ namespace XamControls.iOS.Controls
         {
             base.CancelTracking(uievent);
             isSliderTracking = false;
-            System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
+            //System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
             valueView.AnimateTrackingEnd();
             UpdateValueViewText();
             DidEndTracking?.Invoke(this);

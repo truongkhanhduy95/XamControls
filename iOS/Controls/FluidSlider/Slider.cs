@@ -191,9 +191,10 @@ namespace XamControls.iOS.Controls
             valueView.Frame = ValueViewFrame(clampedX);
         }
 
-        private CGRect ValueViewFrame(float centerX)
+
+        private CGRect ValueViewFrame(nfloat centerX)
         {
-            return null
+            return new CGRect(centerX - Bounds.Height /2, Bounds.GetMinY(), Bounds.Height, Bounds.Height);
         }
 
         private CGRect BoundsForValueViewCenter()
@@ -203,6 +204,13 @@ namespace XamControls.iOS.Controls
                                     0,
                                     valueViewMargin - ValueView.kLayoutMarginInset + valueView.Bounds.GetMidX())
                 .InsetRect(Bounds);
+        }
+
+        private nfloat FractionForPositionX(nfloat x)
+        {
+            var centerBounds = BoundsForValueViewCenter();
+            var clampedX = x < centerBounds.GetMinX() ? centerBounds.GetMinX() : (centerBounds.GetMaxX() < x ? centerBounds.GetMaxX() : x);
+            return (clampedX - centerBounds.GetMinX()) / (centerBounds.GetMaxX() - centerBounds.GetMinX());
         }
 
         private void UpdateValueViewColor()

@@ -116,6 +116,8 @@ namespace XamControls.iOS.Controls
 
         private void Initialize()
         {
+            AddSubview(filterView);
+
             contentView.Frame = Bounds;
             contentView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
             contentView.UserInteractionEnabled = false;
@@ -141,12 +143,15 @@ namespace XamControls.iOS.Controls
 
             filterViewMask = null;
 
-            if(filterView != null) //TODO: check
+            if(filterView.MaskView == null) //TODO: check
+            {
+                filterView.MaskView = new UIImageView();
                 filterView.MaskView.Frame = filterView.Bounds;
+            }
 
             //layoutBackgroundImage()
 
-            LayoutImageViews();
+            //LayoutImageViews();
             LayoutLabelsText();
             LayoutValueView();
         }
@@ -242,7 +247,7 @@ namespace XamControls.iOS.Controls
             isSliderTracking = false;
             valueView.AnimateTrackingEnd();
             UpdateValueViewText();
-            DidEndTracking(this);
+            DidEndTracking?.Invoke(this);
         }
 
         public override void CancelTracking(UIEvent uievent)
@@ -251,7 +256,7 @@ namespace XamControls.iOS.Controls
             isSliderTracking = false;
             valueView.AnimateTrackingEnd();
             UpdateValueViewText();
-            DidEndTracking(this);
+            DidEndTracking?.Invoke(this);
         }
 
         #endregion
@@ -323,7 +328,7 @@ namespace XamControls.iOS.Controls
             filter.AntialiasingRadius = (float)(scale / 2);
             filter.InputImage = new CIImage(inputImage.CGImage);
 
-            var outputImage = filter.OutputImage.ImageByCroppingToRect(
+            var outputImage = filter.OutputImage?.ImageByCroppingToRect(
                 new CGRect(0, 0, inputImage.Size.Width * scale, inputImage.Size.Height * scale));
             var cgImage = context.CreateCGImage(outputImage, outputImage.Extent);
 

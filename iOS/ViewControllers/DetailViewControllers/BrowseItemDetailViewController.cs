@@ -1,5 +1,6 @@
 ﻿using System;
 using UIKit;
+using XamControls.iOS.Controls;
 
 namespace XamControls.iOS
 {
@@ -8,6 +9,8 @@ namespace XamControls.iOS
         public ItemDetailViewModel ViewModel { get; set; }
         public BrowseItemDetailViewController(IntPtr handle) : base(handle) { }
 
+        private Slider slider;
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -15,6 +18,14 @@ namespace XamControls.iOS
             Title = ViewModel.Title;
             ItemNameLabel.Text = ViewModel.Item.Text;
             ItemDescriptionLabel.Text = ViewModel.Item.Description;
+
+            slider = new Slider();
+
+            slider.Frame = new CoreGraphics.CGRect(20, 180, this.View.Bounds.Width - 40, 40);
+            slider.BackgroundColor = UIColor.Gray;
+
+            this.View.AddSubview(slider);
+
         }
     }
 }

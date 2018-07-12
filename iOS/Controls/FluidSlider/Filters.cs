@@ -21,6 +21,29 @@ namespace XamControls.iOS.Controls
         //    return null; //not allow image right now
 
         //}
+
+        public override CIImage OutputImage 
+        {
+            get   
+            {
+                CIImage image;
+                if (InputImage == null) return null;
+                using(var filter = CIFilter.FromName("CIColorControls"))
+                {
+                    filter.Image = InputImage;
+                    image = filter.OutputImage;
+
+                    image = image?.CreateByApplyingGaussianBlur(BlurRadius);
+
+                    if(BackgroundColor!=null)
+                    {
+                        
+                    }
+                }
+
+                return image;
+            }
+        }
     }
 
     public class ThresholdFilter : CIFilter

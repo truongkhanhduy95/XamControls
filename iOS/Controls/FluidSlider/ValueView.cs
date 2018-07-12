@@ -23,7 +23,7 @@ namespace XamControls.iOS.Controls
             //get { return outerShapeLayer.FillColor; }
             set
             {
-                outerShapeLayer.FillColor = value.CGColor;
+                outerShapeLayer.FillColor = UIColor.Blue.CGColor;
                 outerShapeLayer.RemoveAllAnimations();
             }
         }
@@ -33,7 +33,7 @@ namespace XamControls.iOS.Controls
             //get { return outerShapeLayer.FillColor; }
             set
             {
-                innerShapeLayer.FillColor = value.CGColor;
+                innerShapeLayer.FillColor = UIColor.Blue.CGColor;
                 innerShapeLayer.RemoveAllAnimations();
             }
         }
@@ -47,7 +47,7 @@ namespace XamControls.iOS.Controls
                 {
                     var str = value.MutableCopy() as NSMutableAttributedString;
                     //var paragraph = str.GetAttribute(str.)
-                    throw new NotImplementedException(); //TODO
+                    //throw new NotImplementedException(); //TODO
                 }
                 else
                 {

@@ -206,11 +206,61 @@ namespace XamControls.iOS.Controls
                 .InsetRect(Bounds);
         }
 
-        private nfloat FractionForPositionX(nfloat x)
+        #region Events
+
+        public override bool BeginTracking(UITouch uitouch, UIEvent uievent)
+        {
+            var result =  base.BeginTracking(uitouch, uievent);
+
+            var x = uitouch.LocationInView(this).X;
+            isSliderTracking = true;
+
+            fraction = FractionForPositionX(x);
+            valueView.AnimateTrackingBegin();
+
+            //Send action changed; SendAction(this.);
+            DidBeginTracking?.Invoke(this);
+
+            return result;
+        }
+
+        public override bool ContinueTracking(UITouch uitouch, UIEvent uievent)
+        {
+            var result =  base.ContinueTracking(uitouch, uievent);
+            var x = uitouch.LocationInView(this).X;
+            isSliderTracking = true;
+
+            fraction = FractionForPositionX(x);
+
+            filterView.Center = new CGPoint(valueView.Center.X, filterView.Center.X);
+            return result;
+        }
+
+        public override void EndTracking(UITouch uitouch, UIEvent uievent)
+        {
+            base.EndTracking(uitouch, uievent);
+            isSliderTracking = false;
+            valueView.AnimateTrackingEnd();
+            UpdateValueViewText();
+            DidEndTracking(this);
+        }
+
+        public override void CancelTracking(UIEvent uievent)
+        {
+            base.CancelTracking(uievent);
+            isSliderTracking = false;
+            valueView.AnimateTrackingEnd();
+            UpdateValueViewText();
+            DidEndTracking(this);
+        }
+
+        #endregion
+
+        private float FractionForPositionX(nfloat x)
         {
             var centerBounds = BoundsForValueViewCenter();
             var clampedX = x < centerBounds.GetMinX() ? centerBounds.GetMinX() : (centerBounds.GetMaxX() < x ? centerBounds.GetMaxX() : x);
-            return (clampedX - centerBounds.GetMinX()) / (centerBounds.GetMaxX() - centerBounds.GetMinX());
+            return (float)((clampedX - centerBounds.GetMinX()) / (centerBounds.GetMaxX() - centerBounds.GetMinX()));
         }
 
         private void UpdateValueViewColor()

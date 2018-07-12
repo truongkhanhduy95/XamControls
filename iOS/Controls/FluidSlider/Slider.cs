@@ -18,6 +18,16 @@ namespace XamControls.iOS.Controls
             return true;
         }
 
+        private float labelsMargin = 10f;
+        public float LabelsMargin
+        {
+            get { return labelsMargin; }
+            set {
+                labelsMargin = value;
+                LayoutLabelsText();
+            }
+        }
+
         private UIView contentView = new UIView();
         private ValueView valueView = new ValueView();
 
@@ -55,6 +65,17 @@ namespace XamControls.iOS.Controls
                 valueViewColor = value;
                 UpdateValueViewColor();
                 SetNeedsLayout();
+            }
+        }
+
+        private float valueViewMargin = ValueView.kLayoutMarginInset;
+        public float ValueViewMargin
+        {
+            get { return valueViewMargin; }
+            set 
+            {
+                valueViewMargin = Math.Max(value, ValueView.kLayoutMarginInset);
+                LayoutValueView();
             }
         }
 
@@ -125,9 +146,63 @@ namespace XamControls.iOS.Controls
 
             //layoutBackgroundImage()
 
-            //layoutImageViews()
-            //layoutLabelsText()
-            //layoutValueView()
+            //LayoutImageViews();
+            LayoutLabelsText();
+            LayoutValueView();
+        }
+
+        private void LayoutLabelsText()
+        {
+            minimumLabel.SizeToFit();
+            minimumLabel.Frame = new CGRect(labelsMargin,
+                                            Bounds.GetMidY() - minimumLabel.Bounds.GetMidY(), 
+                                            minimumLabel.Bounds.Width,
+                                            minimumLabel.Bounds.Height);
+
+            maximumLabel.SizeToFit();
+            maximumLabel.Frame = new CGRect(Bounds.GetMaxX() - labelsMargin - maximumLabel.Bounds.Width,
+                                            Bounds.GetMidY() - maximumLabel.Bounds.GetMidY(),
+                                           maximumLabel.Bounds.Width,
+                                            maximumLabel.Bounds.Height);
+        }
+
+        private void LayoutImageViews()
+        {
+            var imageInset = ValueView.kLayoutMarginInset * 2;
+            var imageSize = new CGSize(Bounds.Height - imageInset * 2, Bounds.Height - imageInset * 2);
+
+            throw new NotImplementedException();
+        }
+
+
+        private void LayoutValueView()
+        {
+            var rect = new CGRect(contentView.Bounds.Location, contentView.Bounds.Size);
+            var bounds = new UIEdgeInsets(0, valueViewMargin, 0, valueViewMargin).InsetRect(rect);
+            var centerX = fraction * bounds.Size.Width + bounds.GetMinX();
+
+            SetValueViewPositionX(centerX);
+        }
+
+        private void SetValueViewPositionX(nfloat x)
+        {
+            var centerBounds = BoundsForValueViewCenter();
+            var clampedX = x < centerBounds.GetMinX() ? centerBounds.GetMinX() : (centerBounds.GetMaxX() < x ? centerBounds.GetMaxX() : x);
+            valueView.Frame = ValueViewFrame(clampedX);
+        }
+
+        private CGRect ValueViewFrame(float centerX)
+        {
+            return null
+        }
+
+        private CGRect BoundsForValueViewCenter()
+        {
+            return new UIEdgeInsets(0,
+                                    valueViewMargin - ValueView.kLayoutMarginInset + valueView.Bounds.GetMidX(),
+                                    0,
+                                    valueViewMargin - ValueView.kLayoutMarginInset + valueView.Bounds.GetMidX())
+                .InsetRect(Bounds);
         }
 
         private void UpdateValueViewColor()

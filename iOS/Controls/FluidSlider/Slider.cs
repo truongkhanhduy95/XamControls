@@ -13,9 +13,21 @@ namespace XamControls.iOS.Controls
 
         private bool IsAnimationAllowed()
         {
-            //Check if simulator
-            //Check if is under highload
-            return true;
+            bool isUnderHighLoad;
+
+            if(UIDevice.CurrentDevice.CheckSystemVersion(11,0))
+            {
+                isUnderHighLoad =  NSProcessInfo.ProcessInfo.ThermalState == NSProcessInfoThermalState.Serious ||
+                             NSProcessInfo.ProcessInfo.ThermalState == NSProcessInfoThermalState.Critical;
+            }
+            else
+            {
+                isUnderHighLoad = false;
+            }
+
+            return !NSProcessInfo.ProcessInfo.LowPowerModeEnabled 
+                                 && !UIAccessibility.IsReduceMotionEnabled
+                                 && !isUnderHighLoad;
         }
 
         private float labelsMargin = 10f;
@@ -190,7 +202,7 @@ namespace XamControls.iOS.Controls
 
             filterViewMask = null;
 
-            if(filterView.MaskView == null) //TODO: check
+            if(filterView.MaskView == null)
             {
                 filterView.MaskView = new UIImageView();
                 filterView.MaskView.Frame = filterView.Bounds;
@@ -242,8 +254,8 @@ namespace XamControls.iOS.Controls
 
         private void LayoutImageViews()
         {
-            var imageInset = ValueView.kLayoutMarginInset * 2;
-            var imageSize = new CGSize(Bounds.Height - imageInset * 2, Bounds.Height - imageInset * 2);
+            //var imageInset = ValueView.kLayoutMarginInset * 2;
+            //var imageSize = new CGSize(Bounds.Height - imageInset * 2, Bounds.Height - imageInset * 2);
 
             throw new NotImplementedException("Not support yet!!!!");
         }

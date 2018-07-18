@@ -16,7 +16,7 @@ namespace XamControls.Droid.Controls
 
         public bool OnTouch(View v, MotionEvent e)
         {
-            throw new NotImplementedException();
+            return gestureDetector.OnTouchEvent(e);
         }
 
         public void OnSwipeRight()

@@ -64,7 +64,7 @@ namespace XamControls.Droid.Controls
         {
         }
 
-        public PaperOnboardingPage(string titleText, string descriptionText, int bgColor, int contentIconRes, int bottomBarIconRes)
+        public PaperOnboardingPage(string titleText, string descriptionText, Color bgColor, int contentIconRes, int bottomBarIconRes)
         {
             this.bgColor = bgColor;
             this.contentIconRes = contentIconRes;

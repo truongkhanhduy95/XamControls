@@ -1,7 +1,10 @@
-﻿using Android.App;
+﻿using System.Collections.Generic;
+using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Support.V7.App;
+using XamControls.Droid.Controls;
 
 namespace XamControls.Droid
 {
@@ -18,6 +21,8 @@ namespace XamControls.Droid
 
             StartActivity(newIntent);
             Finish();
+
+
         }
     }
 }

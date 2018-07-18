@@ -1,4 +1,5 @@
 ﻿using System;
+using Android.Graphics;
 using Java.IO;
 using Java.Lang;
 
@@ -28,8 +29,8 @@ namespace XamControls.Droid.Controls
             }
         }
 
-        private int bgColor;
-        public int BackgroundColor
+        private Color bgColor;
+        public Color BackgroundColor
         {
             get { return bgColor; }
             set

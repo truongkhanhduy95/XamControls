@@ -3,8 +3,10 @@ using Android.Animation;
 
 namespace XamControls.Droid.Controls
 {
-    public abstract class AnimatorEndListener : Java.Lang.Object, Animator.IAnimatorListener
+    public class AnimatorEndListener : Java.Lang.Object, Animator.IAnimatorListener
     {
+        public Action OnEndAnimation;
+
         public void OnAnimationCancel(Animator animation)
         {
             
@@ -12,7 +14,7 @@ namespace XamControls.Droid.Controls
 
         public void OnAnimationEnd(Animator animation)
         {
-            
+            OnEndAnimation?.Invoke();
         }
 
         public void OnAnimationRepeat(Animator animation)

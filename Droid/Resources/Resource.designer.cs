@@ -2709,17 +2709,17 @@ namespace XamControls.Droid
 			// aapt resource value: 0x7f08008b
 			public const int main_content = 2131230859;
 			
-			// aapt resource value: 0x7f0800c2
-			public const int masked = 2131230914;
+			// aapt resource value: 0x7f0800c7
+			public const int masked = 2131230919;
 			
 			// aapt resource value: 0x7f0800b2
 			public const int media_actions = 2131230898;
 			
-			// aapt resource value: 0x7f0800c3
-			public const int menu_edit = 2131230915;
+			// aapt resource value: 0x7f0800c8
+			public const int menu_edit = 2131230920;
 			
-			// aapt resource value: 0x7f0800c0
-			public const int message = 2131230912;
+			// aapt resource value: 0x7f0800c5
+			public const int message = 2131230917;
 			
 			// aapt resource value: 0x7f080031
 			public const int middle = 2131230769;
@@ -2750,6 +2750,21 @@ namespace XamControls.Droid
 			
 			// aapt resource value: 0x7f0800b4
 			public const int notification_main_column_container = 2131230900;
+			
+			// aapt resource value: 0x7f0800c0
+			public const int onboardingBackgroundContainer = 2131230912;
+			
+			// aapt resource value: 0x7f0800c1
+			public const int onboardingContentIconContainer = 2131230913;
+			
+			// aapt resource value: 0x7f0800c2
+			public const int onboardingContentTextContainer = 2131230914;
+			
+			// aapt resource value: 0x7f0800c3
+			public const int onboardingPagerIconsContainer = 2131230915;
+			
+			// aapt resource value: 0x7f0800bf
+			public const int onboardingRootView = 2131230911;
 			
 			// aapt resource value: 0x7f08004c
 			public const int parallax = 2131230796;
@@ -2865,8 +2880,8 @@ namespace XamControls.Droid
 			// aapt resource value: 0x7f080025
 			public const int showTitle = 2131230757;
 			
-			// aapt resource value: 0x7f0800bf
-			public const int sliding_tabs = 2131230911;
+			// aapt resource value: 0x7f0800c4
+			public const int sliding_tabs = 2131230916;
 			
 			// aapt resource value: 0x7f080099
 			public const int smallLabel = 2131230873;
@@ -3006,8 +3021,8 @@ namespace XamControls.Droid
 			// aapt resource value: 0x7f080096
 			public const int viewpager = 2131230870;
 			
-			// aapt resource value: 0x7f0800c1
-			public const int visible = 2131230913;
+			// aapt resource value: 0x7f0800c6
+			public const int visible = 2131230918;
 			
 			// aapt resource value: 0x7f08003c
 			public const int withText = 2131230780;
@@ -3264,25 +3279,28 @@ namespace XamControls.Droid
 			public const int notification_template_part_time = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int select_dialog_item_material = 2130968640;
+			public const int onboarding_main_layout = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int select_dialog_multichoice_material = 2130968641;
+			public const int select_dialog_item_material = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int select_dialog_singlechoice_material = 2130968642;
+			public const int select_dialog_multichoice_material = 2130968642;
 			
 			// aapt resource value: 0x7f040043
-			public const int support_simple_spinner_dropdown_item = 2130968643;
+			public const int select_dialog_singlechoice_material = 2130968643;
 			
 			// aapt resource value: 0x7f040044
-			public const int tabs = 2130968644;
+			public const int support_simple_spinner_dropdown_item = 2130968644;
 			
 			// aapt resource value: 0x7f040045
-			public const int toolbar = 2130968645;
+			public const int tabs = 2130968645;
 			
 			// aapt resource value: 0x7f040046
-			public const int tooltip = 2130968646;
+			public const int toolbar = 2130968646;
+			
+			// aapt resource value: 0x7f040047
+			public const int tooltip = 2130968647;
 			
 			static Layout()
 			{

@@ -5,9 +5,14 @@ using Android.Views;
 
 namespace XamControls.Droid.Controls
 {
-    public abstract class OnSwipeListener : Java.Lang.Object, View.IOnTouchListener
+    public class OnSwipeListener : Java.Lang.Object, View.IOnTouchListener
     {
         private GestureDetector gestureDetector;
+
+        public Action OnSwipeRight;
+        public Action OnSwipeLeft;
+        public Action OnSwipeTop;
+        public Action OnSwipeBottom;
 
         public OnSwipeListener(Context context)
         {
@@ -19,25 +24,7 @@ namespace XamControls.Droid.Controls
             return gestureDetector.OnTouchEvent(e);
         }
 
-        public void OnSwipeRight()
-        {
-            // do nothing here
-        }
-
-        public void OnSwipeLeft()
-        {
-            // do nothing here
-        }
-
-        public void OnSwipeTop()
-        {
-            // do nothing here
-        }
-
-        public void OnSwipeBottom()
-        {
-            // do nothing here
-        }
+       
 
         public class GestureListener : GestureDetector.SimpleOnGestureListener
         {
@@ -66,11 +53,11 @@ namespace XamControls.Droid.Controls
                         {
                             if (diffX > 0)
                             {
-                                _parent.OnSwipeRight();
+                                _parent.OnSwipeRight?.Invoke();
                             }
                             else
                             {
-                                _parent.OnSwipeLeft();
+                                _parent.OnSwipeLeft?.Invoke();
                             }
                         }
                         result = true;
@@ -79,11 +66,11 @@ namespace XamControls.Droid.Controls
                     {
                         if (diffY > 0)
                         {
-                            _parent.OnSwipeBottom();
+                            _parent.OnSwipeBottom?.Invoke();
                         }
                         else
                         {
-                            _parent.OnSwipeTop();
+                            _parent.OnSwipeTop?.Invoke();
                         }
                     }
                     result = true;

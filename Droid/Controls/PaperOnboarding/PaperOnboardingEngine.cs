@@ -67,7 +67,7 @@ namespace XamControls.Droid.Controls
           
             var swipeListener = new OnSwipeListener(mAppContext);
             swipeListener.OnSwipeLeft += () => ToggleContent(false);
-            swipeListener.OnSwipeLeft += () => ToggleContent(true);
+            swipeListener.OnSwipeRight += () => ToggleContent(true);
             mRootLayout.SetOnTouchListener(swipeListener);
 
             var customGlobalLayout = new CustomGlobalLayoutListener();
@@ -137,6 +137,54 @@ namespace XamControls.Droid.Controls
 
         protected void ToggleContent(bool prev)
         { 
+            int oldElementIndex = mActiveElementIndex;
+            PaperOnboardingPage newElement = prev ? toggleToPreviousElement() : toggleToNextElement();
+
+            if (newElement == null)
+            {
+                if (prev && mOnLeftOutListener != null)
+                    mOnLeftOutListener.OnLeftOut();
+                if (!prev && mOnRightOutListener != null)
+                    mOnRightOutListener.OnRightOut();
+                return;
+            }
+
+            int newPagerPosX = calculateNewPagerPosition(mActiveElementIndex);
+
+            // 1 - animate BG
+            AnimatorSet bgAnimation = createBGAnimatorSet(newElement.BackgroundColor);
+
+            // 2 - animate pager position
+            Animator pagerMoveAnimation = ObjectAnimator.OfFloat(mPagerIconsContainer, "x", mPagerIconsContainer.GetX(), newPagerPosX);
+            pagerMoveAnimation.SetDuration(ANIM_PAGER_BAR_MOVE_TIME);
+
+            // 3 - animate pager icons
+            AnimatorSet pagerIconAnimation = createPagerIconAnimation(oldElementIndex, mActiveElementIndex);
+
+            // 4 animate content text
+            ViewGroup newContentText = createContentTextView(newElement);
+            mContentTextContainer.AddView(newContentText);
+            AnimatorSet contentTextShowAnimation = createContentTextShowAnimation(
+                    mContentTextContainer.GetChildAt(mContentTextContainer.ChildCount - 2), newContentText);
+
+            // 5 animate content icon
+            ImageView newContentIcon = createContentIconView(newElement);
+            mContentIconContainer.AddView(newContentIcon);
+            AnimatorSet contentIconShowAnimation = createContentIconShowAnimation(
+                mContentIconContainer.GetChildAt(mContentIconContainer.ChildCount - 2), newContentIcon);
+
+            // 6 animate centering of all content
+            Animator centerContentAnimation = createContentCenteringVerticalAnimation(newContentText, newContentIcon);
+
+            centerContentAnimation.Start();
+            bgAnimation.Start();
+            pagerMoveAnimation.Start();
+            pagerIconAnimation.Start();
+            contentIconShowAnimation.Start();
+            contentTextShowAnimation.Start();
+
+            if (mOnChangeListener != null)
+                mOnChangeListener.OnPageChanged(oldElementIndex, mActiveElementIndex);
         }
 
         public void setOnChangeListener(PaperOnboardingOnChangeListener onChangeListener)
@@ -188,6 +236,37 @@ namespace XamControls.Droid.Controls
             };
             bgAnimSet.AddListener(endListener);
             return bgAnimSet;
+        }
+
+        protected AnimatorSet createContentIconShowAnimation(View currentContentIcon, View newContentIcon)
+        {
+            int positionDeltaPx = dpToPixels(CONTENT_ICON_POS_DELTA_Y_DP);
+            AnimatorSet animations = new AnimatorSet();
+            Animator currentContentMoveUp = ObjectAnimator.OfFloat(currentContentIcon, "y", 0, -positionDeltaPx);
+            currentContentMoveUp.SetDuration(ANIM_CONTENT_ICON_HIDE_TIME);
+
+            var endListener = new AnimatorEndListener();
+            endListener.OnEndAnimation += () => {
+                mContentIconContainer.RemoveView(currentContentIcon);
+            };
+            currentContentMoveUp.AddListener(endListener);
+
+            Animator currentContentFadeOut = ObjectAnimator.OfFloat(currentContentIcon, "alpha", 1, 0);
+            currentContentFadeOut.SetDuration(ANIM_CONTENT_ICON_HIDE_TIME);
+
+            animations.PlayTogether(currentContentMoveUp, currentContentFadeOut);
+
+            Animator newContentMoveUp = ObjectAnimator.OfFloat(newContentIcon, "y", positionDeltaPx, 0);
+            newContentMoveUp.SetDuration(ANIM_CONTENT_ICON_SHOW_TIME);
+
+            Animator newContentFadeIn = ObjectAnimator.OfFloat(newContentIcon, "alpha", 0, 1);
+            newContentFadeIn.SetDuration(ANIM_CONTENT_ICON_SHOW_TIME);
+
+            animations.PlayTogether(newContentMoveUp, newContentFadeIn);
+
+            animations.SetInterpolator(new DecelerateInterpolator());
+
+            return animations;
         }
 
         private AnimatorSet createContentTextShowAnimation(View currentContentText, View newContentText)
@@ -338,6 +417,18 @@ namespace XamControls.Droid.Controls
             contentIcon.LayoutParameters = (iconLP);
             return contentIcon;
         }
+
+        protected int calculateNewPagerPosition(int newActiveElement)
+        {
+            newActiveElement++;
+            if (newActiveElement <= 0)
+                newActiveElement = 1;
+            int pagerActiveElemCenterPosX = mPagerElementActiveSize / 2
+                    + newActiveElement * mPagerElementLeftMargin
+                    + (newActiveElement - 1) * (mPagerElementNormalSize + mPagerElementRightMargin);
+            return mRootLayout.Width / 2 - pagerActiveElemCenterPosX;
+        }
+
 
         public int getActiveElementIndex()
         {

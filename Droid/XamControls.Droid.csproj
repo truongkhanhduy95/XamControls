@@ -186,6 +186,12 @@
     <AndroidResource Include="Resources\drawable\onboarding_pager_round_icon.xml" />
     <AndroidResource Include="Resources\layout\onboarding_pager_layout.axml" />
     <AndroidResource Include="Resources\layout\onboarding_text_content_layout.axml" />
+    <AndroidResource Include="Resources\drawable\banks.png" />
+    <AndroidResource Include="Resources\drawable\hotels.png" />
+    <AndroidResource Include="Resources\drawable\key.png" />
+    <AndroidResource Include="Resources\drawable\shopping_cart.png" />
+    <AndroidResource Include="Resources\drawable\wallet.png" />
+    <AndroidResource Include="Resources\drawable\stores.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\" />

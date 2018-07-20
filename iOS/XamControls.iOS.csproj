@@ -113,6 +113,18 @@
     <ImageAsset Include="Assets.xcassets\XamarinLogo.imageset\xamarin_logo%402x.png" />
     <ImageAsset Include="Assets.xcassets\XamarinLogo.imageset\xamarin_logo%403x.png" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Key.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Key.imageset\key.png" />
+    <ImageAsset Include="Assets.xcassets\Hotels.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Wallet.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Banks.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Stores.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ShoppingCart.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Hotels.imageset\hotels.png" />
+    <ImageAsset Include="Assets.xcassets\Wallet.imageset\wallet.png" />
+    <ImageAsset Include="Assets.xcassets\Banks.imageset\banks.png" />
+    <ImageAsset Include="Assets.xcassets\Stores.imageset\stores.png" />
+    <ImageAsset Include="Assets.xcassets\ShoppingCart.imageset\shopping_cart.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewControllers\DetailViewControllers\BrowseItemDetailViewController.cs" />
@@ -173,6 +185,12 @@
     <Folder Include="Controls\PaperOnboarding\OnboardingContentView\Item\" />
     <Folder Include="Controls\PaperOnboarding\PageView\Item\" />
     <Folder Include="Controls\PaperOnboarding\PageView\PageContainerView\" />
+    <Folder Include="Assets.xcassets\Key.imageset\" />
+    <Folder Include="Assets.xcassets\Hotels.imageset\" />
+    <Folder Include="Assets.xcassets\Wallet.imageset\" />
+    <Folder Include="Assets.xcassets\Banks.imageset\" />
+    <Folder Include="Assets.xcassets\Stores.imageset\" />
+    <Folder Include="Assets.xcassets\ShoppingCart.imageset\" />
   </ItemGroup>
   <Import Project="..\XamControls\XamControls.projitems" Label="Shared" Condition="Exists('..\XamControls\XamControls.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

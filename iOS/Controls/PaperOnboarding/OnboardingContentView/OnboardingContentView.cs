@@ -75,11 +75,11 @@ namespace XamControls.iOS.Controls
 
             var item = OnboardingContentViewItem.ItemOnView(this);
             item.ImageView.Image = info.InformationImage;
-            item.TitleLabel.Text = info.Title;
-            item.TitleLabel.Font = info.TitleFont;
+            item.TitleLabel.Text = info.Title; 
+            //item.TitleLabel.Font = info.TitleFont;//Ignore by now
             item.TitleLabel.TextColor = info.TitleColor;
             item.DescriptionLabel.Text = info.Description;
-            item.DescriptionLabel.Font = info.DescriptionFont;
+            //item.DescriptionLabel.Font = info.DescriptionFont;
             item.DescriptionLabel.TextColor = info.DescriptionColor;
 
             _delegate?.OnboardingConfiguration(item, index);

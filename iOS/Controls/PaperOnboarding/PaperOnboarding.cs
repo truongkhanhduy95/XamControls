@@ -91,7 +91,7 @@ namespace XamControls.iOS.Controls
                 CurrentIndex = index;
                 CATransaction.Begin();
 
-                CATransaction.CompletionBlock = () => _delegate.OnboardingDidTransitonToIndex(index);
+                CATransaction.CompletionBlock = () => _delegate?.OnboardingDidTransitonToIndex(index);
 
                 var position = pageView?.PositionItemIndex(index, this);
                 if (position != null)
@@ -105,7 +105,7 @@ namespace XamControls.iOS.Controls
             }
             else if(index >= ItemsCounts)
             {
-                _delegate.OnboardingWillTransitonToLeaving();   
+                _delegate?.OnboardingWillTransitonToLeaving();   
             }
         }
 
@@ -114,7 +114,7 @@ namespace XamControls.iOS.Controls
             if (_dataSource != null)
             {
                 ItemsCounts = _dataSource.OnboardingItemsCount();
-                pageViewRadius = _dataSource.OnboardinPageItemRadius();
+                pageViewRadius = _dataSource.OnboardingPageItemRadius();
                 pageViewSelectedRadius = _dataSource.OnboardingPageItemSelectedRadius();
             }
 
@@ -176,7 +176,7 @@ namespace XamControls.iOS.Controls
     {
         public void OnboardingConfiguration(OnboardingContentViewItem item, int index)
         {
-            _delegate.OnboardingConfigurationItem(item, index);
+            _delegate?.OnboardingConfigurationItem(item, index);
         }
 
         public OnboardingItemInfo OnboardingItemAtIndex(int index)

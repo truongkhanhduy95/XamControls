@@ -75,7 +75,7 @@ namespace XamControls.iOS.Controls
                 tag += 1;
                 var nextItem = CreateItem(radius, selectedRadius, itemColor, true);//itemColor(tag - 1));
                 AddConstraintsToView(nextItem, item, radius);
-                Items.Add(nextItem);
+                _items.Add(nextItem);
                 item = nextItem;
                 item.Tag = tag;
             }

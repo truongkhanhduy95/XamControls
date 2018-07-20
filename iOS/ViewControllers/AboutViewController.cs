@@ -13,11 +13,13 @@ namespace XamControls.iOS
             ViewModel = new AboutViewModel();
         }
 
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
             Title = ViewModel.Title;
+            this.NavigationController.HidesBottomBarWhenPushed = true;
 
             SetUpOnboardingView();
         }
@@ -32,10 +34,10 @@ namespace XamControls.iOS
 
             View.AddSubview(onboarding);
 
-            var attrs = new NSLayoutAttribute[] { NSLayoutAttribute.Left, NSLayoutAttribute.Right, NSLayoutAttribute.Top, NSLayoutAttribute.Bottom };
+            var attrs = new NSLayoutAttribute[] { NSLayoutAttribute.Left, NSLayoutAttribute.Right, NSLayoutAttribute.Top};
             foreach(var attr in attrs)
             {
-                var constraint = NSLayoutConstraint.Create(
+                var _constraint = NSLayoutConstraint.Create(
                     onboarding,
                     attr,
                     NSLayoutRelation.Equal,
@@ -44,8 +46,18 @@ namespace XamControls.iOS
                     1,
                     0
                 );
-                View.AddConstraint(constraint);
+                View.AddConstraint(_constraint);
             }
+            var constraint = NSLayoutConstraint.Create(
+                    onboarding,
+                NSLayoutAttribute.Bottom,
+                    NSLayoutRelation.Equal,
+                    View,
+                NSLayoutAttribute.Bottom,
+                    1,-30
+                );
+            View.AddConstraint(constraint);
+           
         }
 
         private List<OnboardingItemInfo> CreateItems()
@@ -75,7 +87,7 @@ namespace XamControls.iOS
                 UIImage.FromBundle("Stores"),
                 "Stores",
                 "All local stores are categorized for your convenience",
-               UIImage.FromBundle("ShoppingCard"),
+               UIImage.FromBundle("ShoppingCart"),
                UIColor.FromRGB(0.61f, 0.56f, 0.74f),
                UIColor.White,
                UIColor.White,

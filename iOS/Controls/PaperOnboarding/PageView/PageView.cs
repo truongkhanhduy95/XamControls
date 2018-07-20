@@ -1,6 +1,7 @@
 ﻿using System;
 using UIKit;
 using CoreGraphics;
+using System.Collections.Generic;
 
 namespace XamControls.iOS.Controls
 {
@@ -19,6 +20,8 @@ namespace XamControls.iOS.Controls
         //    configurePageItems(containerView?.items)
         //    }
         //}   
+
+        public Action<PageViewItem, int> Configuration;
 
         private NSLayoutConstraint containerX;
         private PageContainer containerView;
@@ -87,10 +90,11 @@ namespace XamControls.iOS.Controls
 
         public void CurrentIndex(int index, bool animated)
         {
-            if(itemsCount > 0 && itemsCount == index)
+            if(itemsCount > 0 && itemsCount > index)
             {
                 containerView?.CurrentIndex(index, duration * 0.5, animated);
                 MoveContainerTo(index, animated, duration);
+                Configuration?.Invoke(containerView?.Items[index], index);
             }
         }
 
@@ -133,6 +137,21 @@ namespace XamControls.iOS.Controls
             });
             return container;
         }
+
+        //public void AutoConfig()
+        //{
+        //    //Add
+        //    ConfigurePageItems(containerView.Items);
+        //}
+
+        //private void ConfigurePageItems(List<PageViewItem> items)
+        //{
+        //    if (items == null) return;
+        //    for (int i = 0; i < items.Count; i++)
+        //    {
+        //        Configuration?.Invoke(items[i], i);
+        //    }
+        //}
 
         private void MoveContainerTo(int index, bool animated = true, double _duration = 0)
         {

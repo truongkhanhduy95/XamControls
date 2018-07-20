@@ -37,7 +37,7 @@ namespace XamControls.iOS.Controls
             AnimationItem(items[index], true, duration);
 
             var fillColor = index > currentIndex ? true : false;
-            AnimationItem(items[index], false, duration, fillColor);
+            AnimationItem(items[currentIndex], false, duration, fillColor);
 
             currentIndex = index;
         }

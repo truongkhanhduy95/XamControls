@@ -141,7 +141,11 @@ namespace XamControls.iOS.Controls
         {
             var page = PageView.PageOnView(this, ItemsCounts, -pageViewBottomConstant,
                                            pageViewRadius, pageViewSelectedRadius, _dataSource.OnboardingPageItemColor(0));
-            //page.conf
+            
+            page.Configuration += (PageViewItem item, int index) => 
+            {
+                item.ImageView.Image = this.itemsInfo[index].PageIcon;
+            };
             return page;
         }
 

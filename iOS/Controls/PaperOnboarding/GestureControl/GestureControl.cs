@@ -3,19 +3,21 @@ using UIKit;
 
 namespace XamControls.iOS.Controls
 {
-    public abstract class GestureControleDelegate
+    public interface IGestureControleDelegate
     {
-        public void GestureControlDidSwipe(UISwipeGestureRecognizerDirection direction)
-        {
-            
-        }
+        void GestureControlDidSwipe(UISwipeGestureRecognizerDirection direction);
+    }
+
+    public abstract class GestureControleDelegate : IGestureControleDelegate
+    {
+        public abstract void GestureControlDidSwipe(UISwipeGestureRecognizerDirection direction);
     }
 
     public partial class GestureControl : UIView
     {
-        private GestureControleDelegate _delegate;
+        private IGestureControleDelegate _delegate;
 
-        public GestureControl(UIView view, GestureControleDelegate gestureDelegate)
+        public GestureControl(UIView view, IGestureControleDelegate gestureDelegate)
         {
             _delegate = gestureDelegate;
 
@@ -53,6 +55,5 @@ namespace XamControls.iOS.Controls
             _delegate.GestureControlDidSwipe(gesture.Direction);
         }
     }
-
 
 }

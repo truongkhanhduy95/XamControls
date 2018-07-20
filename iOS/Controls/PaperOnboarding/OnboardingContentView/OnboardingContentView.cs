@@ -3,10 +3,17 @@ using UIKit;
 
 namespace XamControls.iOS.Controls
 {
-    public abstract class OnboardingContentViewDelegate
+    public interface IOnboardingContentViewDelegate
     {
-        public OnboardingItemInfo OnboardingItemAtIndex(int index) { return null; }
-        public void OnboardingConfiguration(OnboardingContentViewItem item, int index) {}
+        OnboardingItemInfo OnboardingItemAtIndex(int index);
+        void OnboardingConfiguration(OnboardingContentViewItem item, int index);
+    }
+
+    public abstract class OnboardingContentViewDelegate : IOnboardingContentViewDelegate
+    {
+        public abstract void OnboardingConfiguration(OnboardingContentViewItem item, int index);
+
+        public abstract OnboardingItemInfo OnboardingItemAtIndex(int index);
     }
 
     public class OnboardingContentView : UIView
@@ -17,16 +24,16 @@ namespace XamControls.iOS.Controls
         readonly double HideDuration = 0.2;
 
         private OnboardingContentViewItem currentItem;
-        private OnboardingContentViewDelegate _delegate;
+        private IOnboardingContentViewDelegate _delegate;
 
-        public OnboardingContentView(int itemCounts, OnboardingContentViewDelegate onboardDelegate)
+        public OnboardingContentView(int itemCounts, IOnboardingContentViewDelegate onboardDelegate)
         {
             _delegate = onboardDelegate;
             this.Frame = CoreGraphics.CGRect.Empty;
             Initialize();
         }
 
-        public static OnboardingContentView ContentViewOnView(UIView view, OnboardingContentViewDelegate delegateView, int itemCounts, nfloat bottomConstraints)
+        public static OnboardingContentView ContentViewOnView(UIView view, IOnboardingContentViewDelegate delegateView, int itemCounts, nfloat bottomConstraints)
         {
             var contentView = new OnboardingContentView(itemCounts, delegateView);
             contentView.BackgroundColor = UIColor.Clear;
@@ -68,11 +75,11 @@ namespace XamControls.iOS.Controls
 
             var item = OnboardingContentViewItem.ItemOnView(this);
             item.ImageView.Image = info.InformationImage;
-            item.TitleLabel.Text = info.Title;
-            item.TitleLabel.Font = info.TitleFont;
+            item.TitleLabel.Text = info.Title; 
+            //item.TitleLabel.Font = info.TitleFont;//Ignore by now
             item.TitleLabel.TextColor = info.TitleColor;
             item.DescriptionLabel.Text = info.Description;
-            item.DescriptionLabel.Font = info.DescriptionFont;
+            //item.DescriptionLabel.Font = info.DescriptionFont;
             item.DescriptionLabel.TextColor = info.DescriptionColor;
 
             _delegate?.OnboardingConfiguration(item, index);

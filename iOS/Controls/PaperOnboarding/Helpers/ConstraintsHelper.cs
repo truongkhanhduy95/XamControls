@@ -45,8 +45,6 @@ namespace XamControls.iOS.Controls
                 view,
                 info.Attribute,
                 info.Relation,
-                null,
-                info.Attribute,
                 1,
                 info.Constant
             );

@@ -51,7 +51,7 @@ namespace XamControls.iOS.Controls
             var imageView = CreateImage(this);
 
             //Add constraints
-            TitleCenterConstraint = titleLabel.ConstraintOps((obj) =>
+            TitleCenterConstraint = (this,titleLabel, imageView).ConstraintOps((obj) =>
             {
                 obj.Attribute = NSLayoutAttribute.Top;
                 obj.SecondAttribute = NSLayoutAttribute.Bottom;

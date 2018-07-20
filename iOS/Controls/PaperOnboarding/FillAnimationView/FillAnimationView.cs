@@ -17,7 +17,7 @@ namespace XamControls.iOS.Controls
 
     public partial class FillAnimationView 
     {
-        public FillAnimationView AnimationViewOnView(UIView view, UIColor color)
+        public static  FillAnimationView AnimationViewOnView(UIView view, UIColor color)
         {
             var animationView = new FillAnimationView();
             animationView.Frame = CGRect.Empty;

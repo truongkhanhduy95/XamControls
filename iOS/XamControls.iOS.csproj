@@ -143,12 +143,14 @@
     <Compile Include="Controls\PaperOnboarding\PaperOnboarding.cs" />
     <Compile Include="Controls\PaperOnboarding\PaperOnboardingDataSource.cs" />
     <Compile Include="Controls\PaperOnboarding\PaperOnboardingDelegate.cs" />
-    <Compile Include="Controls\PaperOnboarding\Helpers\Configuring.cs" />
     <Compile Include="Controls\PaperOnboarding\Helpers\ConstraintsHelper.cs" />
     <Compile Include="Controls\PaperOnboarding\FillAnimationView\FillAnimationView.cs" />
     <Compile Include="Controls\PaperOnboarding\GestureControl\GestureControl.cs" />
     <Compile Include="Controls\PaperOnboarding\OnboardingContentView\OnboardingContentView.cs" />
     <Compile Include="Controls\PaperOnboarding\OnboardingContentView\Item\OnboardingContentViewItem.cs" />
+    <Compile Include="Controls\PaperOnboarding\PageView\PageView.cs" />
+    <Compile Include="Controls\PaperOnboarding\PageView\Item\PageViewItem.cs" />
+    <Compile Include="Controls\PaperOnboarding\PageView\PageContainerView\PageContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />
@@ -169,6 +171,8 @@
     <Folder Include="Controls\PaperOnboarding\OnboardingContentView\" />
     <Folder Include="Controls\PaperOnboarding\PageView\" />
     <Folder Include="Controls\PaperOnboarding\OnboardingContentView\Item\" />
+    <Folder Include="Controls\PaperOnboarding\PageView\Item\" />
+    <Folder Include="Controls\PaperOnboarding\PageView\PageContainerView\" />
   </ItemGroup>
   <Import Project="..\XamControls\XamControls.projitems" Label="Shared" Condition="Exists('..\XamControls\XamControls.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

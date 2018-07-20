@@ -96,7 +96,7 @@ namespace XamControls.iOS.Controls
 
         public CGPoint PositionItemIndex(int index, UIView view)
         {
-            if (itemsCount > 0 && itemsCount == index)
+            if (itemsCount > 0 && itemsCount > index && index >=0)
             {
                 var currentItemView = containerView?.Items[index].ImageView;
                 if(currentItemView != null)

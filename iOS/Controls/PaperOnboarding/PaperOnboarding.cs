@@ -85,7 +85,7 @@ namespace XamControls.iOS.Controls
 
         public void SetCurrentIndex(int index, bool animated)
         {
-            if(ItemsCounts > 0 && ItemsCounts < index)
+            if(ItemsCounts > 0 && ItemsCounts > index && index >= 0)
             {
                 _delegate?.OnboardingWillTransitonToIndex(index);
                 CurrentIndex = index;
@@ -142,7 +142,7 @@ namespace XamControls.iOS.Controls
             var page = PageView.PageOnView(this, ItemsCounts, -pageViewBottomConstant,
                                            pageViewRadius, pageViewSelectedRadius, _dataSource.OnboardingPageItemColor(0));
             //page.conf
-            return pageView;
+            return page;
         }
 
         private List<OnboardingItemInfo> CreateItemsInfo()

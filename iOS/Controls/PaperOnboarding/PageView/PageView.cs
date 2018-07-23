@@ -121,7 +121,7 @@ namespace XamControls.iOS.Controls
                                                itemsCount,
                                                 itemColor);
             var container = pageControl;
-            container.BackgroundColor = UIColor.Clear;
+            container.BackgroundColor = UIColor.Gray;
             container.TranslatesAutoresizingMaskIntoConstraints = false;
             this.AddSubview(container);
 
@@ -129,34 +129,20 @@ namespace XamControls.iOS.Controls
             (this, container).ConstraintOps((obj) => obj.Attribute = NSLayoutAttribute.Top);
             (this, container).ConstraintOps((obj) => obj.Attribute = NSLayoutAttribute.Bottom);
 
-            containerX = (this, container).ConstraintOps((obj) => obj.Attribute = NSLayoutAttribute.CenterX);
             container.ConstraintOps((obj) =>
             {
                 obj.Attribute = NSLayoutAttribute.Width;
-                obj.Constant = selectedItemRadius * 2 + (float)(itemsCount - 1) * (itemRadius * 2) + space * (float)(itemsCount - 1);
+                obj.Constant = selectedItemRadius * 2 + (itemsCount - 1) * (itemRadius * 2) + space * (itemsCount - 1);
             });
+            containerX = (this, container).ConstraintOps((obj) => obj.Attribute = NSLayoutAttribute.CenterX);
             return container;
         }
 
-        //public void AutoConfig()
-        //{
-        //    //Add
-        //    ConfigurePageItems(containerView.Items);
-        //}
-
-        //private void ConfigurePageItems(List<PageViewItem> items)
-        //{
-        //    if (items == null) return;
-        //    for (int i = 0; i < items.Count; i++)
-        //    {
-        //        Configuration?.Invoke(items[i], i);
-        //    }
-        //}
 
         private void MoveContainerTo(int index, bool animated = true, double _duration = 0)
         {
-            var containerWidth = (float)(itemsCount + 1) * selectedItemRadius + space * (float)(itemsCount - 1);
-            var toValue = containerWidth / 2 - selectedItemRadius - (selectedItemRadius + space) * (float)index;
+            var containerWidth = (itemsCount + 1) * selectedItemRadius + space * (itemsCount - 1);
+            var toValue = containerWidth / 2 - selectedItemRadius - (selectedItemRadius + space) * index;
             containerX.Constant = toValue;
 
             if (animated)

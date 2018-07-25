@@ -31,8 +31,8 @@ namespace XamControls.Droid
 
             slider = FindViewById<Controls.FluidSlider>(Resource.Id.fluidSlider);
 
-            slider.From = 0;
-            slider.To = 500;
+            slider.From = 100;
+            slider.To = 400;
             slider.SelectedValue = 250;
             slider.ColorBar = this.BaseContext.Resources.GetColor(Resource.Color.primary);
             //slider.ColorBubble = this.BaseContext.Resources.GetColor(Resource.Color.primary);

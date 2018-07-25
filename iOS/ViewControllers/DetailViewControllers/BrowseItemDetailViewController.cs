@@ -23,7 +23,9 @@ namespace XamControls.iOS
             slider.ValueViewColor = UIColor.White;
             slider.ContentViewColor = UIColor.FromRGB(52 , 152 , 219 );
             slider.Fraction = 0.5f;
-            slider.Frame = new CoreGraphics.CGRect(20, 180, this.View.Bounds.Width - 40, 40);
+			slider.From = 5;
+			slider.To = 25;
+            slider.Frame = new CoreGraphics.CGRect(20, 220, this.View.Bounds.Width - 40, 40);
             slider.ContentViewCornerRadius = 8;
             //slider.BackgroundColor = UIColor.Gray;
 

@@ -121,7 +121,7 @@ namespace XamControls.iOS.Controls
                                                itemsCount,
                                                 itemColor);
             var container = pageControl;
-            container.BackgroundColor = UIColor.Gray;
+            container.BackgroundColor = UIColor.Clear;
             container.TranslatesAutoresizingMaskIntoConstraints = false;
             this.AddSubview(container);
 

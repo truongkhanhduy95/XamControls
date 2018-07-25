@@ -74,11 +74,12 @@ namespace XamControls.iOS.Controls
             {
                 tag += 1;
                 var nextItem = CreateItem(radius, selectedRadius, itemColor, false);//itemColor(tag - 1));
-                AddConstraintsToView(nextItem, item, radius);
+                AddConstraintsToView(nextItem, item, radius, isEnd: i == count -1);
                 _items.Add(nextItem);
                 item = nextItem;
                 item.Tag = tag;
             }
+
             return _items;
         }
 
@@ -109,8 +110,11 @@ namespace XamControls.iOS.Controls
                 });
         }
 
-        private void AddConstraintsToView(UIView item, UIView leftView, float radius)
+        private void AddConstraintsToView(UIView item, UIView leftView, float radius, bool isEnd = false)
         {
+            if(isEnd)
+                (this, item).ConstraintOps((obj) => obj.Attribute = NSLayoutAttribute.Right);
+
             (this, item).ConstraintOps((obj) => obj.Attribute = NSLayoutAttribute.CenterY);
 
             (this, item, leftView).ConstraintOps((obj) => 

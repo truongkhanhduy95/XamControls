@@ -163,6 +163,11 @@
     <Compile Include="Controls\PaperOnboarding\PageView\PageView.cs" />
     <Compile Include="Controls\PaperOnboarding\PageView\Item\PageViewItem.cs" />
     <Compile Include="Controls\PaperOnboarding\PageView\PageContainerView\PageContainer.cs" />
+    <Compile Include="Controls\GarlandView\GarlandCollection.cs" />
+    <Compile Include="Controls\GarlandView\GarlandConfig.cs" />
+    <Compile Include="Controls\GarlandView\GarlandPresentAnimationController.cs" />
+    <Compile Include="Controls\GarlandView\GarlandView.cs" />
+    <Compile Include="Controls\GarlandView\GarlandViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />
@@ -191,6 +196,7 @@
     <Folder Include="Assets.xcassets\Banks.imageset\" />
     <Folder Include="Assets.xcassets\Stores.imageset\" />
     <Folder Include="Assets.xcassets\ShoppingCart.imageset\" />
+    <Folder Include="Controls\GarlandView\" />
   </ItemGroup>
   <Import Project="..\XamControls\XamControls.projitems" Label="Shared" Condition="Exists('..\XamControls\XamControls.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

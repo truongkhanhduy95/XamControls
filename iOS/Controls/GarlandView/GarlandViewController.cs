@@ -68,7 +68,8 @@ namespace XamControls.iOS.Controls
         {
             if(!IsPresenting)
             {
-                IsPresenting = true;
+                throw new NotImplementedException("Not ported yet!!!");
+                //IsPresenting = true;
             }
         }
 
@@ -87,14 +88,31 @@ namespace XamControls.iOS.Controls
 
         private void SetupBackground()
         {
-            
+            var config = GarlandConfig.Instance;
+            BackgroundHeader.Frame = new CGRect(CGPoint.Empty, new CGSize(UIScreen.MainScreen.Bounds.Width,
+                                                                         UIScreen.MainScreen.Bounds.Height));
+            BackgroundHeader.BackgroundColor = config.BackgroundHeaderColor;
+            View.InsertSubview(BackgroundHeader, 0);
         }
 
         private void SetupFakeHeaders()
         {
-            
-        }
+            var config = GarlandConfig.Instance;
+            var size = new CGSize(config.HeaderSize.Width / 1.6f, config.HeaderSize.Height / 1.6f);
+            var vertialPosition =  Collection.Frame.Y + (config.HeaderSize.Height - size.Height)/ 2;
 
+            RightFakeHeader.Frame = new CGRect(new CGPoint(UIScreen.MainScreen.Bounds.Width - RightFakeHeader.Frame.Width / 14,
+                                                           vertialPosition), size);
+            RightFakeHeader.BackgroundColor = config.FakeHeaderColor;
+            RightFakeHeader.Layer.CornerRadius = config.CardRadius;
+            View.AddSubview(RightFakeHeader);
+
+            LeftFakeHeader.Frame = new CGRect(new CGPoint(-LeftFakeHeader.Frame.Width + LeftFakeHeader.Frame.Width / 14,
+                                                           vertialPosition), size);
+            LeftFakeHeader.Layer.CornerRadius = config.CardRadius;
+            LeftFakeHeader.BackgroundColor = config.FakeHeaderColor;
+            View.AddSubview(LeftFakeHeader);
+        }
     }
 
     //Implement animation transition

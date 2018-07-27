@@ -57,7 +57,8 @@ namespace XamControls.iOS.Controls
                                        new NSParagraphStyle().MutableCopy() as NSMutableParagraphStyle;
                     paragraph.Alignment = UITextAlignment.Center;
                     str.AddAttribute(UIStringAttributeKey.ParagraphStyle, paragraph, new NSRange(0, str.Length));
-                    TextLabel.AttributedText = str;
+					TextLabel.AttributedText = str;
+					TextLabel.SetNeedsDisplay();
                 }
                 else
                 {

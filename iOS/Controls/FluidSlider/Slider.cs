@@ -335,8 +335,8 @@ namespace XamControls.iOS.Controls
 
             Fraction = FractionForPositionX(x);
             valueView.AnimateTrackingBegin();
-            System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
-            //Send action changed; SendAction(this.);
+            //System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
+			//Send action changed; SendAction(this.);
             DidBeginTracking?.Invoke(this);
 
             return result;
@@ -349,7 +349,7 @@ namespace XamControls.iOS.Controls
             isSliderTracking = true;
 
             Fraction = FractionForPositionX(x);
-            System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
+            //System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
             filterView.Center = new CGPoint(valueView.Center.X, filterView.Center.X);
             return result;
         }
@@ -359,8 +359,8 @@ namespace XamControls.iOS.Controls
             base.EndTracking(uitouch, uievent);
             isSliderTracking = false;
             valueView.AnimateTrackingEnd();
-            System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
-            UpdateValueViewText();
+            //System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
+			//UpdateValueViewText();
             DidEndTracking?.Invoke(this);
         }
 
@@ -370,7 +370,7 @@ namespace XamControls.iOS.Controls
             isSliderTracking = false;
             //System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
             valueView.AnimateTrackingEnd();
-            UpdateValueViewText();
+            //UpdateValueViewText();
             DidEndTracking?.Invoke(this);
         }
 

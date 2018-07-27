@@ -42,7 +42,7 @@ namespace XamControls.iOS.Controls
 
         public void AnimationSelected(bool selected, double duration, bool fillColor)
         {
-            var toAlpha = select ? 1 : 0;
+            var toAlpha = selected ? 1 : 0;
             ImageAlphaAnimation(toAlpha, duration);
 
             var currentRad = selected ? selectedCircleRadius : circleRadius;

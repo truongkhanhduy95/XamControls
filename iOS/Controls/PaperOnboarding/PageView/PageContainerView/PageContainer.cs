@@ -36,6 +36,7 @@ namespace XamControls.iOS.Controls
 
             AnimationItem(items[index], true, duration);
 
+
             var fillColor = index > currentIndex ? true : false;
             AnimationItem(items[currentIndex], false, duration, fillColor);
 
@@ -44,7 +45,7 @@ namespace XamControls.iOS.Controls
 
         protected void AnimationItem(PageViewItem item, bool selected, double duration, bool fillColor = false)
         {
-            var toValue = selected ? selectedItemRadius : itemRadius * 2;
+            var toValue = selected ? selectedItemRadius * 2: itemRadius * 2;
             foreach(var constraint in item.Constraints)
             {
                 if (constraint.GetIdentifier() == animationKey)

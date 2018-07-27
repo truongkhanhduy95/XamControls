@@ -42,5 +42,9 @@ namespace XamControls.iOS.Controls
         public float CardShadowRadius = 5;
 
         public float CardShadowOpacity = 0.3f;
+
+        public UIColor BackgroundHeaderColor = UIColor.Cyan;
+
+        public UIColor FakeHeaderColor = UIColor.Blue;
     }
 }

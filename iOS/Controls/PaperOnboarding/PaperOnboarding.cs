@@ -146,6 +146,7 @@ namespace XamControls.iOS.Controls
             {
                 item.ImageView.Image = this.itemsInfo[index].PageIcon;
             };
+            page.CurrentIndex(0, false);
             return page;
         }
 

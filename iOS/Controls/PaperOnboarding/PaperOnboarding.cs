@@ -144,7 +144,6 @@ namespace XamControls.iOS.Controls
             
             page.Configuration += (PageViewItem item, int index) => 
             {
-                item.ImageView.Alpha = 1;
                 item.ImageView.Image = this.itemsInfo[index].PageIcon;
             };
             page.CurrentIndex(0, false);

@@ -73,7 +73,7 @@ namespace XamControls.iOS.Controls
         private UILabel CreateTitleLabel(UIView view)
         {
             var label = CreateLabel();
-            //label.Font = 
+            label.Font = UIFont.BoldSystemFontOfSize(22.0f);
 
             view.AddSubview(label);
 

@@ -197,6 +197,15 @@
     <Folder Include="Assets.xcassets\Stores.imageset\" />
     <Folder Include="Assets.xcassets\ShoppingCart.imageset\" />
     <Folder Include="Controls\GarlandView\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\banks.png" />
+    <BundleResource Include="Resources\hotels.png" />
+    <BundleResource Include="Resources\key.png" />
+    <BundleResource Include="Resources\shopping_cart.png" />
+    <BundleResource Include="Resources\stores.png" />
+    <BundleResource Include="Resources\wallet.png" />
   </ItemGroup>
   <Import Project="..\XamControls\XamControls.projitems" Label="Shared" Condition="Exists('..\XamControls\XamControls.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

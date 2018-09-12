@@ -41,7 +41,6 @@ namespace XamControls.iOS
             slider.To = 25;
             slider.Frame = new CoreGraphics.CGRect(20, 220, this.View.Bounds.Width - 40, 40);
             slider.ContentViewCornerRadius = 8;
-            //slider.BackgroundColor = UIColor.Gray;
 
             this.View.AddSubview(slider);
         }
@@ -68,6 +67,15 @@ namespace XamControls.iOS
                 alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, (obj) => this.DismissViewController(true, null)));
                 this.PresentViewController(alert, true, null);
             };
+
+            //Props
+            this.tagsView.Alignment = TagsAlignment.Left;
+            this.tagsView.CornerRadius = 17f;
+            //this.tagsView.PaddingX = 5f;
+            this.tagsView.PaddingX = 8f;
+            this.tagsView.ControlsDistance = 4f;
+            this.tagsView.TagBackgroundColor = UIColor.FromRGB(52, 152, 219);
+
             this.View.AddSubviews(this.input, this.btnAdd, this.tagsView);
             this.View.SubviewsDoNotTranslateAutoresizingMaskIntoConstraints();
 
@@ -80,15 +88,18 @@ namespace XamControls.iOS
                 this.btnAdd.WithSameCenterY(this.input),
 
                 this.tagsView.Below(this.input, 20f),
-                this.tagsView.AtLeftOf(this.View),
-                this.tagsView.AtRightOf(this.View)
+                this.tagsView.AtLeftOf(this.View, 5f),
+                this.tagsView.AtRightOf(this.View, 5f)
             );
         }
 
         private void BtnAdd_TouchUpInside(object sender, EventArgs e)
         {
-            tagsView.AddTag(this.input.Text);
-            this.input.Text = string.Empty;
+            if(!string.IsNullOrEmpty(this.input.Text))
+            {
+                tagsView.AddTag(this.input.Text);
+                this.input.Text = string.Empty;
+            }
         }
     }
 }

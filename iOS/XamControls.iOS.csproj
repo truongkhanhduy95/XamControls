@@ -208,6 +208,10 @@
     <Folder Include="Controls\GarlandView\" />
     <Folder Include="Controls\TagView\" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\.DS_Store" />
+    <BundleResource Include="Resources\ic_removetag.png" />
+  </ItemGroup>
   <Import Project="..\XamControls\XamControls.projitems" Label="Shared" Condition="Exists('..\XamControls\XamControls.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

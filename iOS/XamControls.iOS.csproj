@@ -97,6 +97,9 @@
     <Reference Include="Plugin.Connectivity">
       <HintPath>..\packages\Xam.Plugin.Connectivity.3.0.2\lib\Xamarin.iOS10\Plugin.Connectivity.dll</HintPath>
     </Reference>
+    <Reference Include="Cirrious.FluentLayouts.Touch">
+      <HintPath>..\packages\Cirrious.FluentLayout.2.7.0\lib\Xamarin.iOS10\Cirrious.FluentLayouts.Touch.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -168,6 +171,12 @@
     <Compile Include="Controls\GarlandView\GarlandPresentAnimationController.cs" />
     <Compile Include="Controls\GarlandView\GarlandView.cs" />
     <Compile Include="Controls\GarlandView\GarlandViewController.cs" />
+    <Compile Include="Controls\TagView\TagsAlignment.cs" />
+    <Compile Include="Controls\TagView\TagButtonView.cs" />
+    <Compile Include="Controls\TagView\TagView.cs" />
+    <Compile Include="Controls\TagView\UIViewExtensions.cs" />
+    <Compile Include="Controls\TagView\TagListView.cs" />
+    <Compile Include="Controls\TagView\ObjectTapGestureRecognizer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />
@@ -197,6 +206,11 @@
     <Folder Include="Assets.xcassets\Stores.imageset\" />
     <Folder Include="Assets.xcassets\ShoppingCart.imageset\" />
     <Folder Include="Controls\GarlandView\" />
+    <Folder Include="Controls\TagView\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\.DS_Store" />
+    <BundleResource Include="Resources\ic_removetag.png" />
   </ItemGroup>
   <Import Project="..\XamControls\XamControls.projitems" Label="Shared" Condition="Exists('..\XamControls\XamControls.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

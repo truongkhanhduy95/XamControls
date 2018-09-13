@@ -152,6 +152,10 @@
     <Compile Include="Controls\GarlandView\Inner\InnerItem.cs" />
     <Compile Include="Controls\GarlandView\Inner\InnerLayoutManager.cs" />
     <Compile Include="Controls\GarlandView\Inner\InnerRecyclerView.cs" />
+    <Compile Include="Controls\TagView\Utils.cs" />
+    <Compile Include="Controls\TagView\Constants.cs" />
+    <Compile Include="Controls\TagView\Tag.cs" />
+    <Compile Include="Controls\TagView\TagView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AboutAssets.txt" />
@@ -214,6 +218,7 @@
     <Folder Include="Controls\GarlandView\" />
     <Folder Include="Controls\GarlandView\Header\" />
     <Folder Include="Controls\GarlandView\Inner\" />
+    <Folder Include="Controls\TagView\" />
   </ItemGroup>
   <Import Project="..\XamControls\XamControls.projitems" Label="Shared" Condition="Exists('..\XamControls\XamControls.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

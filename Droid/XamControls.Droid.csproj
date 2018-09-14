@@ -156,6 +156,8 @@
     <Compile Include="Controls\TagView\Constants.cs" />
     <Compile Include="Controls\TagView\Tag.cs" />
     <Compile Include="Controls\TagView\TagView.cs" />
+    <Compile Include="Controls\ConnectionDialog\ConnectionDialog.cs" />
+    <Compile Include="Controls\ConnectionDialog\AndroidConnectionManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AboutAssets.txt" />
@@ -219,6 +221,7 @@
     <Folder Include="Controls\GarlandView\Header\" />
     <Folder Include="Controls\GarlandView\Inner\" />
     <Folder Include="Controls\TagView\" />
+    <Folder Include="Controls\ConnectionDialog\" />
   </ItemGroup>
   <Import Project="..\XamControls\XamControls.projitems" Label="Shared" Condition="Exists('..\XamControls\XamControls.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

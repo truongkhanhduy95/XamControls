@@ -17,4 +17,13 @@ All credit goes to: https://github.com/Ramotion/
 ## iOS
 
 ### Usage
+
 1) Create new `TagListView`
+
+``` c#
+var tagsView = new TagListView(true)
+  {
+    PaddingY = 4f,
+    TextFont = UIFont.SystemFontOfSize(20f)
+  };
+```

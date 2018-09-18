@@ -13,3 +13,8 @@ All credit goes to: https://github.com/Ramotion/
 # Tag View: 
 <img src="https://github.com/truongkhanhduy95/XamControls/blob/master/img/ios_tag_view.png" width="338" height="600" />
 <br><br/>
+
+## iOS
+
+### Usage
+1) Create new `TagListView`

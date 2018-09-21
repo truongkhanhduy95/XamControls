@@ -95,6 +95,8 @@ namespace XamControls.Droid.Controls
 
         private void Initialize(Context ctx, IAttributeSet attrs, int defStyle)
         {
+            mContext = ctx;
+
             mInflater = (LayoutInflater)ctx.GetSystemService(Context.LayoutInflaterService);
 
             mViewTreeObserber = ViewTreeObserver;

@@ -87,7 +87,13 @@ var tagView = FindViewById<TagView>(Resource.Id.tagView);
 ```
 2) Add tags
 ``` c#
-  var tag = new Controls.Tag("This is tag name");
-  tag.IsDeletable = true; //Show "x" button
-  tagView.AddTag(tag);
+var tag = new Controls.Tag("This is tag name");
+tag.IsDeletable = true; //Show "x" button
+tagView.AddTag(tag);
+```
+3) Setup TagView Listener
+``` c#
+tagView.SetOnTagClickListener(new MyOnTagClickListener());
+tagView.SetOnTagDeleteListener(new MyOnTagDeleteListener());
+tagView.SetOnTagLongClickListener(new MySetOnTagLongClickListenery());
 ```

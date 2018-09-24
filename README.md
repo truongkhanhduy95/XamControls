@@ -70,3 +70,18 @@ tagsView.TagSelected += (sender, e) =>
 ## Android
 
 ### Usage
+
+1) Create TagView in XML layout file
+
+``` xml
+  <XamControls.Droid.Controls.TagView
+      android:id="@+id/tagView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="16dp"
+      android:layout_marginStart="16dp"/>
+```
+
+``` c#
+var tagView = FindViewById<TagView>(Resource.Id.tagView);
+```

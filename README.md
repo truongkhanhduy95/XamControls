@@ -66,3 +66,7 @@ tagsView.TagSelected += (sender, e) =>
    //Do something...                
 };
 ```
+
+## Android
+
+### Usage

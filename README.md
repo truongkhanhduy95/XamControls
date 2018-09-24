@@ -85,3 +85,9 @@ tagsView.TagSelected += (sender, e) =>
 ``` c#
 var tagView = FindViewById<TagView>(Resource.Id.tagView);
 ```
+2) Add tags
+``` c#
+  var tag = new Controls.Tag("This is tag name");
+  tag.IsDeletable = true; //Show "x" button
+  tagView.AddTag(tag);
+```

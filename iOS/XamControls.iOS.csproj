@@ -179,6 +179,11 @@
     <Compile Include="Controls\TagView\ObjectTapGestureRecognizer.cs" />
     <Compile Include="Controls\ConnectionDialog\ConnectionDialog.cs" />
     <Compile Include="Controls\ConnectionDialog\IOSConnectionManager.cs" />
+    <Compile Include="Controls\PinCodeDialog\PinCodeDialog.cs" />
+    <Compile Include="Controls\PinCodeDialog\PinCodeDialog.designer.cs">
+      <DependentUpon>PinCodeDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PinCodeDialog\PinCodeView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />
@@ -188,6 +193,7 @@
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Controls\PinCodeDialog\PinCodeDialog.xib" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\" />

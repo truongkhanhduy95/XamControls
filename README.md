@@ -97,3 +97,4 @@ tagView.SetOnTagClickListener(new MyOnTagClickListener());
 tagView.SetOnTagDeleteListener(new MyOnTagDeleteListener());
 tagView.SetOnTagLongClickListener(new MySetOnTagLongClickListenery());
 ```
+# Notification Handler:

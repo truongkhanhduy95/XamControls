@@ -112,7 +112,9 @@ public override bool FinishedLaunching(UIApplication application, NSDictionary l
     Firebase.Core.App.Configure();
             
     return true;
-} ```
+} 
+```
+
 
 2) Initial events
 ``` c#
@@ -131,4 +133,5 @@ private void RegisterFirebaseEvents()
 
      //Connect
      FirebaseTokenHandler.Instance.ConnectToFCM();
-} ```
+}
+```

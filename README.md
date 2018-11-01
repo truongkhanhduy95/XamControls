@@ -135,3 +135,13 @@ private void RegisterFirebaseEvents()
      FirebaseTokenHandler.Instance.ConnectToFCM();
 }
 ```
+
+3) Handle recieve remote notificaation
+``` c#
+[Export("messaging:didReceiveMessage:")]
+public void DidReceiveMessage(Firebase.CloudMessaging.Messaging messaging, Firebase.CloudMessaging.RemoteMessage remoteMessage)
+{
+     //Handle receiving Remote notification
+     RemoteNotification.Instance.DidReceiveRemoteNotification(messaging, remoteMessage);
+}
+```

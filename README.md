@@ -113,3 +113,22 @@ public override bool FinishedLaunching(UIApplication application, NSDictionary l
             
     return true;
 } ```
+
+2) Initial events
+``` c#
+private void RegisterFirebaseEvents()
+{
+    //Ask for permission
+    RemoteNotification.Instance.RegisterForReceivingRemoteNotifications(isGranted =>
+    {
+            //if (isGranted) SaveSetting...
+    });
+
+     //Handle token
+     FirebaseTokenHandler.Instance.OnRefreshToken = (token) => {
+             //Register token to server..
+     };
+
+     //Connect
+     FirebaseTokenHandler.Instance.ConnectToFCM();
+} ```

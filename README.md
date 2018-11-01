@@ -98,3 +98,18 @@ tagView.SetOnTagDeleteListener(new MyOnTagDeleteListener());
 tagView.SetOnTagLongClickListener(new MySetOnTagLongClickListenery());
 ```
 # Notification Handler:
+
+## iOS
+
+### Usage
+
+1) Configure Firebase in AppDelegate
+
+``` c#
+public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
+{
+    //...
+    Firebase.Core.App.Configure();
+            
+    return true;
+} ```

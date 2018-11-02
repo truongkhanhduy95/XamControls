@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using Android.Animation;
+﻿using Android.Animation;
 using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Views.Animations;
 using Android.Widget;
 using Java.Lang;
+using System;
+using System.Collections.Generic;
 
 namespace XamControls.Droid.Controls
 {

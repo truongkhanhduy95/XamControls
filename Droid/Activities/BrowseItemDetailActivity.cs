@@ -14,6 +14,7 @@ namespace XamControls.Droid
         /// </summary>
         protected override int LayoutResource => Resource.Layout.activity_item_details;
         private Controls.FluidSlider slider;
+        private Controls.TagView tagView;
 
         ItemDetailViewModel viewModel;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -29,28 +30,35 @@ namespace XamControls.Droid
 
             SupportActionBar.Title = item.Text;
 
+            SetUpSlider();
+            SetUpTagView();
+        }
+
+        private void SetUpSlider()
+        {
             slider = FindViewById<Controls.FluidSlider>(Resource.Id.fluidSlider);
 
-            slider.From = 0;
-            slider.To = 500;
+            slider.From = 100;
+            slider.To = 400;
             slider.SelectedValue = 250;
             slider.ColorBar = this.BaseContext.Resources.GetColor(Resource.Color.primary);
             //slider.ColorBubble = this.BaseContext.Resources.GetColor(Resource.Color.primary);
 
-            slider.OnPositionChanged += (float value) => 
+            slider.OnPositionChanged += (float value) =>
             {
                 System.Diagnostics.Debug.WriteLine("Selected: " + value);
             };
         }
 
-        protected override void OnStart()
+        private void SetUpTagView()
         {
-            base.OnStart();
-        }
-
-        protected override void OnStop()
-        {
-            base.OnStop();
+            tagView = FindViewById<Controls.TagView>(Resource.Id.tagView);
+            for (int i = 0; i < 5; i++)
+            {
+                var tag = new Controls.Tag("Item " + i);
+                tag.IsDeletable = true;
+                tagView.AddTag(tag);
+            }
         }
     }
 }

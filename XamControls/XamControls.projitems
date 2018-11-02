@@ -20,5 +20,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Modules\ConnectionDialog\IConnectionManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Modules\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Modules\ConnectionDialog\" />
   </ItemGroup>
 </Project>

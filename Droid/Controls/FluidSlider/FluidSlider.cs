@@ -318,12 +318,12 @@ namespace XamControls.Droid.Controls
 
         private float GetCurentValue()
         {
-            return (float)Math.Round(position * (Math.Abs(To - From)));
+			return (float)Math.Round(position * (Math.Abs(To - From)) + From);
         }
 
         private void SetCurrentValue(float value)
         {
-            position = (float)(value / Math.Abs(To - From));
+			position = (float)((value - From) / Math.Abs(To - From));
         }
 
         private void UpdatePosition(float value)

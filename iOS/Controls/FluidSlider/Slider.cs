@@ -8,6 +8,12 @@ namespace XamControls.iOS.Controls
 {
     public class Slider : UIControl
     {
+		public const int DEFAULT_START = 0;
+		public const int DEFAULT_END = 100;
+
+		public const int DEFAULT_MAX_FRACTION_DIGITS = 0;
+		public const int DEFAULT_MAX_INTEGER_DIGITS = 3;
+
         private float kBlurRadiusDefault = 12;
         private float kBlurRadiusIphonePlus = 18;
 
@@ -57,6 +63,33 @@ namespace XamControls.iOS.Controls
 
         public Action<Slider> DidBeginTracking;
         public Action<Slider> DidEndTracking;
+
+		private int from = DEFAULT_START;
+		public int From 
+		{
+			get { return from; }
+			set 
+			{
+				from = value;
+				SetMinimumLabelAttributedText(new NSAttributedString(from.ToString(), foregroundColor: UIColor.White));
+				UpdateValueViewText();
+			}
+		}
+
+		private int to = DEFAULT_END;
+		public int To
+		{
+			get { return to; }
+			set 
+			{
+				to = value;
+				SetMaximumLabelAttributedText(new NSAttributedString(to.ToString(), foregroundColor: UIColor.White));
+				UpdateValueViewText();
+			}
+		}
+
+		public int DisplayValueMaximumFractionDigits = DEFAULT_MAX_FRACTION_DIGITS;
+		public int DisplayValueMaximumIntegerDigits = DEFAULT_MAX_INTEGER_DIGITS;
 
         private float contentViewCornerRadius = 8f;
         public float ContentViewCornerRadius
@@ -189,8 +222,8 @@ namespace XamControls.iOS.Controls
             valueView.UserInteractionEnabled = false;
             valueView.AnimationFrame = RedrawFilterView;
 
-            SetMinimumLabelAttributedText(new NSAttributedString("0", foregroundColor: UIColor.White));
-            SetMaximumLabelAttributedText(new NSAttributedString("1", foregroundColor: UIColor.White));
+			SetMinimumLabelAttributedText(new NSAttributedString(From.ToString(), foregroundColor: UIColor.White));
+			SetMaximumLabelAttributedText(new NSAttributedString(To.ToString(), foregroundColor: UIColor.White));
 
             UpdateValueViewColor();
             UpdateValueViewText();
@@ -302,8 +335,8 @@ namespace XamControls.iOS.Controls
 
             Fraction = FractionForPositionX(x);
             valueView.AnimateTrackingBegin();
-            System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
-            //Send action changed; SendAction(this.);
+            //System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
+			//Send action changed; SendAction(this.);
             DidBeginTracking?.Invoke(this);
 
             return result;
@@ -316,7 +349,7 @@ namespace XamControls.iOS.Controls
             isSliderTracking = true;
 
             Fraction = FractionForPositionX(x);
-            System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
+            //System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
             filterView.Center = new CGPoint(valueView.Center.X, filterView.Center.X);
             return result;
         }
@@ -326,8 +359,8 @@ namespace XamControls.iOS.Controls
             base.EndTracking(uitouch, uievent);
             isSliderTracking = false;
             valueView.AnimateTrackingEnd();
-            System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
-            UpdateValueViewText();
+            //System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
+			//UpdateValueViewText();
             DidEndTracking?.Invoke(this);
         }
 
@@ -337,7 +370,7 @@ namespace XamControls.iOS.Controls
             isSliderTracking = false;
             //System.Diagnostics.Debug.WriteLine("Fraction: " + fraction);
             valueView.AnimateTrackingEnd();
-            UpdateValueViewText();
+            //UpdateValueViewText();
             DidEndTracking?.Invoke(this);
         }
 
@@ -383,9 +416,9 @@ namespace XamControls.iOS.Controls
         public NSAttributedString AttributedTextForFraction(float frag)
         {
             var formatter = new NSNumberFormatter();
-            formatter.MaximumFractionDigits = 2;
-            formatter.MaximumIntegerDigits = 0;
-            var str = formatter.StringFromNumber((NSNumber)frag) ?? "";
+			formatter.MaximumFractionDigits = DisplayValueMaximumFractionDigits;
+			formatter.MaximumIntegerDigits = DisplayValueMaximumIntegerDigits;
+			var str = formatter.StringFromNumber(frag * Math.Abs(To - From) + From) ?? "";
             return new NSAttributedString(str);
         }
 

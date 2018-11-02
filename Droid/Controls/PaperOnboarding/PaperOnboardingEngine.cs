@@ -88,7 +88,7 @@ namespace XamControls.Droid.Controls
             mPagerElementRightMargin = layoutParams.RightMargin;
 
             mPagerIconsContainer.SetX(CalculateNewPagerPosition(0));
-            mContentCenteredContainer.SetY((mContentRootLayout.Height - mContentCenteredContainer.Height / 2));
+            mContentCenteredContainer.SetY((mContentRootLayout.Height - mContentCenteredContainer.Height) / 2);
         }
 
         protected int CalculateNewPagerPosition(int newActiveElement)

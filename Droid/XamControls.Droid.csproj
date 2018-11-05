@@ -222,6 +222,7 @@
     <Folder Include="Controls\GarlandView\Inner\" />
     <Folder Include="Controls\TagView\" />
     <Folder Include="Controls\ConnectionDialog\" />
+    <Folder Include="Controls\PinCodeDialog\" />
   </ItemGroup>
   <Import Project="..\XamControls\XamControls.projitems" Label="Shared" Condition="Exists('..\XamControls\XamControls.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

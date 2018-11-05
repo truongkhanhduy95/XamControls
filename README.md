@@ -145,3 +145,10 @@ public void DidReceiveMessage(Firebase.CloudMessaging.Messaging messaging, Fireb
      RemoteNotification.Instance.DidReceiveRemoteNotification(messaging, remoteMessage);
 }
 ```
+
+# Pincode Dialog:
+<img src="https://github.com/truongkhanhduy95/XamControls/blob/master/img/pin_code_dialog.png" width="338" height="600" />
+<br><br/>
+## iOS
+
+### Usage

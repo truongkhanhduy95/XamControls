@@ -8,7 +8,7 @@ namespace XamControls.Droid.Controls.Biometric
 {
     class FingerprintAuthCallback : FingerprintManagerCompat.AuthenticationCallback
     {
-        public Action<byte[]> OnAuthenticatedSuccess;
+        public Action OnAuthenticatedSuccess;
         public Action OnAuthenicatedFailed;
         public Action<string> OnAuthenticatedHelp;
         public Action<string> OnAuthenticatedError;
@@ -32,7 +32,7 @@ namespace XamControls.Droid.Controls.Biometric
                     byte[] doFinalResult = result.CryptoObject.Cipher.DoFinal(SECRET_BYTES);
 
                     // No errors occurred, trust the results.        
-                    OnAuthenticatedSuccess?.Invoke(doFinalResult);
+                    OnAuthenticatedSuccess?.Invoke();
                 }
                 catch (BadPaddingException bpe)
                 {

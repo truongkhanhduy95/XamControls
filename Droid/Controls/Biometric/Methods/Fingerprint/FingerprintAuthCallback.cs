@@ -46,6 +46,7 @@ namespace XamControls.Droid.Controls.Biometric
                     Log.Error(TAG, "Failed to encrypt the data with the generated key." + ibse);
                     OnAuthenicatedFailed?.Invoke();
                 }
+
             }
             else
             {

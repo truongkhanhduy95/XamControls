@@ -187,7 +187,8 @@
     <Compile Include="Controls\Biometric\BiometricAuth.cs" />
     <Compile Include="Controls\Biometric\Contract\IBiometricAuth.cs" />
     <Compile Include="Controls\Biometric\Contract\IBiometricMethod.cs" />
-    <Compile Include="Controls\Biometric\TouchID\TouchIDMethod.cs" />
+    <Compile Include="Controls\Biometric\Methods\TouchID\TouchIDMethod.cs" />
+    <Compile Include="Controls\Biometric\Methods\FaceID\FaceIDMethod.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />
@@ -222,7 +223,9 @@
     <Folder Include="Controls\ConnectionDialog\" />
     <Folder Include="Controls\Biometric\" />
     <Folder Include="Controls\Biometric\Contract\" />
-    <Folder Include="Controls\Biometric\TouchID\" />
+    <Folder Include="Controls\Biometric\Methods\" />
+    <Folder Include="Controls\Biometric\Methods\TouchID\" />
+    <Folder Include="Controls\Biometric\Methods\FaceID\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\.DS_Store" />

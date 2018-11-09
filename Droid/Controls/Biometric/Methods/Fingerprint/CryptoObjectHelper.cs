@@ -72,7 +72,7 @@ namespace XamControls.Droid.Controls.Biometric
 
         private void CreateKey()
         {
-            KeyGenerator keyGen = KeyGenerator.GetInstance(KeyProperties.KeyAlgorithmAes, KEYSTORE_NAME);
+            KeyGenerator keyGen = KeyGenerator.GetInstance(KEY_ALGORITHM, KEYSTORE_NAME);
             KeyGenParameterSpec keyGenSpec =
                 new KeyGenParameterSpec.Builder(KEY_NAME, KeyStorePurpose.Encrypt | KeyStorePurpose.Decrypt)
                     .SetBlockModes(BLOCK_MODE)

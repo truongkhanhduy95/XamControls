@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace XamControls.Droid.Controls.Biometric
+namespace XamControls.iOS.Controls.Biometric
 {
     public class BiometricAuth : IBiometricAuth
     {

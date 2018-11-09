@@ -3,26 +3,33 @@ using System.Threading.Tasks;
 
 namespace XamControls.Droid.Controls.Biometric
 {
-    public class AuthenResult
-    {
-        public byte[] SignedBytes { get; private set; }
-
-        public bool IsSuccess { get; private set; }
-
-        public string Message { get; private set; }
-
-        public AuthenResult(bool isSuccess, string message, byte[] signedBytes)
-        {
-            SignedBytes = signedBytes;
-            IsSuccess = isSuccess;
-            Message = message;
-        }
-    }
-
     public interface IBiometricMethod
     {
         Task<bool> CheckHardwareSupport();
 
-        AuthenResult StartAuthenticate();
+        void StartScanning();
+
+        void StopScanning();
+
+        Action<AuthenResult> OnScanned { get; set; }
+    }
+
+
+    public class AuthenResult
+    {
+        public bool IsSuccess => Status == AuthenticationStatus.Succeeded;
+
+        public string ErrorMessage { get; set; }
+
+        public AuthenticationStatus Status { get; set; }
+
+    }
+
+    public enum AuthenticationStatus
+    {
+        Succeeded,
+        Help,
+        Error,
+        Failure
     }
 }

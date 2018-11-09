@@ -158,12 +158,12 @@
     <Compile Include="Controls\TagView\TagView.cs" />
     <Compile Include="Controls\ConnectionDialog\ConnectionDialog.cs" />
     <Compile Include="Controls\ConnectionDialog\AndroidConnectionManager.cs" />
-    <Compile Include="Controls\Biometric\BiometricAuth.cs" />
     <Compile Include="Controls\Biometric\Methods\Fingerprint\FingerprintMethod.cs" />
     <Compile Include="Controls\Biometric\Methods\Fingerprint\CryptoObjectHelper.cs" />
     <Compile Include="Controls\Biometric\Methods\Fingerprint\FingerprintAuthCallback.cs" />
     <Compile Include="Controls\Biometric\Contract\IBiometricMethod.cs" />
     <Compile Include="Controls\Biometric\Contract\IBiometricAuth.cs" />
+    <Compile Include="Controls\Biometric\BiometricAuth.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AboutAssets.txt" />

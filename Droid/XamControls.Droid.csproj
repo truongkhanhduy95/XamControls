@@ -158,6 +158,11 @@
     <Compile Include="Controls\TagView\TagView.cs" />
     <Compile Include="Controls\ConnectionDialog\ConnectionDialog.cs" />
     <Compile Include="Controls\ConnectionDialog\AndroidConnectionManager.cs" />
+    <Compile Include="Controls\Biometric\BiometricAuth.cs" />
+    <Compile Include="Controls\Biometric\Methods\Fingerprint\Fingerprint.cs" />
+    <Compile Include="Controls\Biometric\Methods\IBiometricMethod.cs" />
+    <Compile Include="Controls\Biometric\Methods\Fingerprint\CryptoObjectHelper.cs" />
+    <Compile Include="Controls\Biometric\Methods\Fingerprint\MyAuthCallbackSample.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AboutAssets.txt" />
@@ -223,6 +228,9 @@
     <Folder Include="Controls\TagView\" />
     <Folder Include="Controls\ConnectionDialog\" />
     <Folder Include="Controls\PinCodeDialog\" />
+    <Folder Include="Controls\Biometric\" />
+    <Folder Include="Controls\Biometric\Methods\" />
+    <Folder Include="Controls\Biometric\Methods\Fingerprint\" />
   </ItemGroup>
   <Import Project="..\XamControls\XamControls.projitems" Label="Shared" Condition="Exists('..\XamControls\XamControls.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

@@ -9,7 +9,7 @@ namespace XamControls.Droid.Controls.Biometric
     public class CryptoObjectHelper
     {
         // This can be key name you want. Should be unique for the app.
-        static readonly string KEY_NAME = "com.xamarin.android.sample.fingerprint_authentication_key";
+        static readonly string KEY_NAME = "com.xamarin.android.fingerprint_authentication_key";
 
         // We always use this keystore on Android.
         static readonly string KEYSTORE_NAME = "AndroidKeyStore";

@@ -1,5 +1,5 @@
 # XamControls
-Xamarin ported controls
+Xamarin cross-platform ported controls
 
 # FluidSlider:
 <img src="https://github.com/Ramotion/fluid-slider/blob/master/fluid-slider.gif" width="600" height="450" />

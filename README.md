@@ -149,6 +149,3 @@ public void DidReceiveMessage(Firebase.CloudMessaging.Messaging messaging, Fireb
 # Pincode Dialog:
 <img src="https://github.com/truongkhanhduy95/XamControls/blob/master/img/pin_code_dialog.png" width="338" height="600" />
 
-## iOS
-
-### Usage

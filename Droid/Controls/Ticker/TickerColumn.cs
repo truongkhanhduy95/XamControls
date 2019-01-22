@@ -224,6 +224,7 @@ namespace XamControls.Droid.Controls
         private bool drawText(Canvas canvas, Paint textPaint, char[] characterList,
                 int index, float verticalOffset)
         {
+            if (characterList == null) return false;
             if (index >= 0 && index < characterList.Length)
             {
                 canvas.DrawText(characterList, index, 1, 0f, verticalOffset, textPaint);

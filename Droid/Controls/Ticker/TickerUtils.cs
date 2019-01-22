@@ -3,7 +3,7 @@ namespace XamControls.Droid.Controls
 {
     public class TickerUtils
     {
-        public static char EMPTY_CHAR = '0';
+        public static char EMPTY_CHAR = ' ';
 
         public static string ProvideNumberList()
         {

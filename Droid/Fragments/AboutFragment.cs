@@ -2,6 +2,7 @@
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using XamControls.Droid.Controls;
 
 namespace XamControls.Droid
 {
@@ -11,6 +12,8 @@ namespace XamControls.Droid
             new AboutFragment { Arguments = new Bundle() };
 
         public AboutViewModel ViewModel { get; set; }
+
+        private TickerView tickerView;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -26,6 +29,7 @@ namespace XamControls.Droid
             var view = inflater.Inflate(Resource.Layout.fragment_about, container, false);
             ViewModel = new AboutViewModel();
             learnMoreButton = view.FindViewById<Button>(Resource.Id.button_learn_more);
+            tickerView = view.FindViewById<TickerView>(Resource.Id.tickerView);
             return view;
         }
 
@@ -33,6 +37,9 @@ namespace XamControls.Droid
         {
             base.OnStart();
             learnMoreButton.Click += LearnMoreButton_Click;
+
+            tickerView.setCharacterLists(TickerUtils.ProvideNumberList().ToCharArray());
+            tickerView.setText("9555");
         }
 
         public override void OnStop()

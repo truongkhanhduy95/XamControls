@@ -22,7 +22,7 @@ namespace XamControls.Droid.Controls
             this.characterLists = new TickerCharacterList[chars.Length];
             for (int i = 0; i < characterLists.Length; i++)
             {
-                this.characterLists[i] = new TickerCharacterList(characterLists[i].ToString());
+                this.characterLists[i] = new TickerCharacterList(chars[i].ToString());
             }
 
             this.supportedCharacters = new List<char>();
@@ -73,8 +73,7 @@ namespace XamControls.Droid.Controls
                 {
                     case LevenshteinUtils.ACTION_INSERT:
                         tickerColumns.Insert(columnIndex,
-                                new TickerColumn(characterLists, metrics));
-                        break;
+                                new TickerColumn(characterLists, metrics)); break;
                     // Intentional fallthrough
                     case LevenshteinUtils.ACTION_SAME:
                         tickerColumns[columnIndex].setTargetChar(text[textIndex]);

@@ -4,12 +4,12 @@ using Android.Views;
 
 namespace XamControls.Droid.Controls
 {
-    public abstract class InnerItem : RecyclerView.ViewHolder
-    {
-        private int prevHeight;
+    //public abstract class InnerItem : RecyclerView.ViewHolder
+    //{
+    //    private int prevHeight;
 
 
 
-        protected abstract View GetInnerLayout();
-    }
+    //    protected abstract View GetInnerLayout();
+    //}
 }

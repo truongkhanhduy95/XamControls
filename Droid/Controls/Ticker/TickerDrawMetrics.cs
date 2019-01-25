@@ -13,7 +13,7 @@ namespace XamControls.Droid.Controls
         public float CharHeight => charHeight;
 
         private float charBaseline;
-        public float CharBaseline => CharBaseline;
+        public float CharBaseline => charBaseline;
 
         public TickerDrawMetrics(Paint paint)
         {
@@ -44,6 +44,15 @@ namespace XamControls.Droid.Controls
             Paint.FontMetrics fm = textPaint.GetFontMetrics();
             charHeight = fm.Bottom - fm.Top;
             charBaseline = -fm.Top;
+        }
+
+        public float GetCharBaseLine()
+        {
+            return charBaseline;
+        }
+        public float GetCharHeight()
+        {
+            return charHeight;
         }
     }
 }

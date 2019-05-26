@@ -15,7 +15,6 @@ All credit goes to: https://github.com/Ramotion/
 <br><br/>
 
 ## iOS
-
 ### Usage
 
 1) Create new `TagListView`

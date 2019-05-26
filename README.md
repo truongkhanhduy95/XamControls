@@ -1,4 +1,4 @@
-# XamControls
+# Xamarin Native Controls
 Xamarin cross-platform ported controls
 
 # FluidSlider:

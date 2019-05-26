@@ -15,7 +15,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -140,18 +139,6 @@
     <Compile Include="Controls\PaperOnboarding\Listeners\PaperOnboardingOnChangeListener.cs" />
     <Compile Include="Controls\PaperOnboarding\Listeners\OnSwipeListener.cs" />
     <Compile Include="Controls\PaperOnboarding\Listeners\AnimatorEndListener.cs" />
-    <Compile Include="Controls\GarlandView\TailAdapter.cs" />
-    <Compile Include="Controls\GarlandView\TailItem.cs" />
-    <Compile Include="Controls\GarlandView\TailItemTransformer.cs" />
-    <Compile Include="Controls\GarlandView\TailRecyclerView.cs" />
-    <Compile Include="Controls\GarlandView\TailSnapHelper.cs" />
-    <Compile Include="Controls\GarlandView\Header\HeaderDecorator.cs" />
-    <Compile Include="Controls\GarlandView\Header\HeaderItem.cs" />
-    <Compile Include="Controls\GarlandView\Header\HeaderTransformer.cs" />
-    <Compile Include="Controls\GarlandView\Inner\InnerAdapter.cs" />
-    <Compile Include="Controls\GarlandView\Inner\InnerItem.cs" />
-    <Compile Include="Controls\GarlandView\Inner\InnerLayoutManager.cs" />
-    <Compile Include="Controls\GarlandView\Inner\InnerRecyclerView.cs" />
     <Compile Include="Controls\TagView\Utils.cs" />
     <Compile Include="Controls\TagView\Constants.cs" />
     <Compile Include="Controls\TagView\Tag.cs" />
@@ -164,6 +151,13 @@
     <Compile Include="Controls\Biometric\Contract\IBiometricMethod.cs" />
     <Compile Include="Controls\Biometric\Contract\IBiometricAuth.cs" />
     <Compile Include="Controls\Biometric\BiometricAuth.cs" />
+    <Compile Include="Controls\Ticker\TickerDrawMetrics.cs" />
+    <Compile Include="Controls\Ticker\TickerUtils.cs" />
+    <Compile Include="Controls\Ticker\LevenshteinUtils.cs" />
+    <Compile Include="Controls\Ticker\TickerCharacterList.cs" />
+    <Compile Include="Controls\Ticker\TickerColumn.cs" />
+    <Compile Include="Controls\Ticker\TickerColumnManager.cs" />
+    <Compile Include="Controls\Ticker\TickerView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AboutAssets.txt" />
@@ -223,9 +217,6 @@
     <Folder Include="Controls\PaperOnboarding\" />
     <Folder Include="Controls\PaperOnboarding\Listeners\" />
     <Folder Include="Controls\PaperOnboarding\Utils\" />
-    <Folder Include="Controls\GarlandView\" />
-    <Folder Include="Controls\GarlandView\Header\" />
-    <Folder Include="Controls\GarlandView\Inner\" />
     <Folder Include="Controls\TagView\" />
     <Folder Include="Controls\ConnectionDialog\" />
     <Folder Include="Controls\PinCodeDialog\" />
@@ -233,6 +224,7 @@
     <Folder Include="Controls\Biometric\Methods\" />
     <Folder Include="Controls\Biometric\Methods\Fingerprint\" />
     <Folder Include="Controls\Biometric\Contract\" />
+    <Folder Include="Controls\Ticker\" />
   </ItemGroup>
   <Import Project="..\XamControls\XamControls.projitems" Label="Shared" Condition="Exists('..\XamControls\XamControls.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

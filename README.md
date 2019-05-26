@@ -1,5 +1,5 @@
 # XamControls
-Xamarin ported controls
+Xamarin cross-platform ported controls
 
 # FluidSlider:
 <img src="https://github.com/Ramotion/fluid-slider/blob/master/fluid-slider.gif" width="600" height="450" />
@@ -149,6 +149,3 @@ public void DidReceiveMessage(Firebase.CloudMessaging.Messaging messaging, Fireb
 # Pincode Dialog:
 <img src="https://github.com/truongkhanhduy95/XamControls/blob/master/img/pin_code_dialog.png" width="338" height="600" />
 
-## iOS
-
-### Usage
